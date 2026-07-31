@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大学数学 統合学習ツリーマップ</title>
+<style>
+:root{
+ --bg:#0c0e14;--panel:#151924;--panel2:#1c2230;--line:#262c3c;
+ --txt:#e9ecf3;--dim:#8790a6;--faint:#59617a;
+ --calc:#4f9cf9;--lin:#f5a524;--disc:#2dd4bf;--prob:#f472b6;--bridge:#a78bfa;--ml:#22c55e;--done:#2a7a52;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);
+ font-family:-apple-system,"Segoe UI","Hiragino Sans","Noto Sans JP",sans-serif;-webkit-font-smoothing:antialiased}
+.top{padding:20px 24px 0;max-width:1600px;margin:0 auto}
+h1{font-size:22px;margin:0 0 5px}
+.lead{color:var(--dim);font-size:12.5px;margin:0;line-height:1.7}
+.lead b{color:var(--txt);font-weight:600}
+
+.bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:14px 0 8px;font-size:11.5px;color:var(--dim)}
+.pbar{flex:0 1 200px;height:7px;background:var(--panel2);border-radius:6px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--calc),var(--lin),var(--prob));transition:width .3s}
+.bar button{background:var(--panel2);border:1px solid var(--line);color:var(--dim);
+ padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit}
+.bar button:hover{color:var(--txt);border-color:var(--dim)}
+.bar .sep{width:1px;height:16px;background:var(--line)}
+.lg{display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none;padding:2px 6px;border-radius:5px}
+.lg:hover{background:var(--panel2)}
+.lg.off{opacity:.35}
+.dot{width:9px;height:9px;border-radius:3px;flex:none}
+
+.scroll{overflow-x:auto;padding:0 24px 26px;max-width:1600px;margin:0 auto}
+.canvas{position:relative;width:1444px;height:1330px;transform-origin:top left}
+svg.edges{position:absolute;inset:0;width:1444px;height:1330px;pointer-events:none;overflow:visible}
+.edge{fill:none;stroke:#2b3244;stroke-width:1.5}
+.edge.cross{stroke:#3b3358;stroke-dasharray:5 4;stroke-width:1.3}
+.edge.hi{stroke:#7dd3fc;stroke-width:2.4;stroke-dasharray:none;filter:drop-shadow(0 0 4px rgba(125,211,252,.5))}
+.edge.dim{opacity:.12}
+
+.band{position:absolute;border-radius:14px;pointer-events:none}
+.band span{position:absolute;top:7px;left:13px;font-size:10.5px;letter-spacing:.16em;font-weight:700;opacity:.62}
+
+.n{position:absolute;background:var(--panel);border:1px solid var(--line);
+ border-top:2.5px solid var(--c);border-radius:9px;padding:8px 10px;cursor:pointer;
+ transition:transform .12s,background .12s,box-shadow .12s,opacity .15s;overflow:hidden}
+.n:hover{background:var(--panel2);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.n.sel{background:var(--panel2);box-shadow:0 0 0 1.5px var(--c),0 8px 24px rgba(0,0,0,.55)}
+.n.dim{opacity:.16}
+.n.hidden{display:none}
+.n.done{border-top-color:var(--done)}
+.n.done .ttl{color:var(--faint);text-decoration:line-through}
+.n.core{border-width:1px 1px 1px 1px;border-top-width:3.5px}
+.ttl{font-size:12.5px;font-weight:600;line-height:1.35;padding-right:14px}
+.sb{font-size:10px;color:var(--faint);margin-top:3px;line-height:1.4;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mlb{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--ml)}
+.n.done .mlb{background:var(--done)}
+.ck{position:absolute;bottom:4px;right:5px;width:15px;height:15px;border:1.4px solid var(--line);
+ border-radius:4px;font-size:9px;color:transparent;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+.ck:hover{border-color:var(--dim)}
+.n.done .ck{background:var(--done);border-color:var(--done);color:#fff}
+
+.dr{position:fixed;top:0;right:0;width:440px;max-width:93vw;height:100%;background:var(--panel);
+ border-left:1px solid var(--line);transform:translateX(100%);transition:transform .25s;
+ z-index:100;overflow-y:auto;padding:24px 26px 70px;box-shadow:-20px 0 50px rgba(0,0,0,.55)}
+.dr.on{transform:none}
+.dr .x{position:absolute;top:13px;right:16px;background:none;border:none;color:var(--dim);font-size:22px;cursor:pointer}
+.dr h2{font-size:18.5px;margin:0 0 5px;padding-right:30px;line-height:1.4}
+.meta{font-size:11.5px;color:var(--faint);margin-bottom:14px}
+.chip{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10.5px;font-weight:600;
+ border:1px solid;margin-right:6px}
+.dr h4{font-size:10.5px;letter-spacing:.1em;color:var(--dim);margin:18px 0 6px;font-weight:700}
+.dr p{margin:0;font-size:13.5px;line-height:1.8}
+.dr ul{margin:0;padding-left:18px;font-size:12.8px;line-height:1.85}
+.mlbox{background:#0d2b1c;border:1px solid #1c5c38;border-radius:8px;padding:10px 13px;
+ font-size:12.5px;color:#9ae6b8;line-height:1.7}
+.tipbox{background:var(--panel2);border-radius:8px;padding:10px 13px;font-size:12.5px;color:var(--dim);line-height:1.7;margin-top:14px}
+.rel{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.rel b{font-size:11.5px;background:var(--panel2);border:1px solid var(--line);border-radius:20px;
+ padding:3px 10px;cursor:pointer;font-weight:500}
+.rel b:hover{border-color:var(--dim);color:#fff}
+.route{counter-reset:s;margin:6px 0 0;padding:0;list-style:none;font-size:12.5px}
+.route li{counter-increment:s;padding:4px 0 4px 26px;position:relative;line-height:1.6;
+ border-left:1px solid var(--line);margin-left:7px}
+.route li::before{content:counter(s);position:absolute;left:-9px;top:6px;width:17px;height:17px;
+ background:var(--panel2);border:1px solid var(--line);border-radius:50%;font-size:9.5px;
+ display:flex;align-items:center;justify-content:center;color:var(--dim)}
+.route li.ok::before{background:var(--done);border-color:var(--done);color:#fff;content:"✓"}
+.mask{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:99;display:none}
+.mask.on{display:block}
+.foot{max-width:1600px;margin:0 auto;padding:0 24px 50px;color:var(--faint);font-size:11.5px;line-height:1.8}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>大学数学 統合学習ツリーマップ</h1>
+  <p class="lead"><b>微分積分</b>と<b>線形代数</b>を幹に、そこから伸びる周辺分野（解析の応用・離散数学・確率統計・応用数学）を1枚に統合。<br>
+  実線＝同分野内の前提関係、点線＝分野をまたぐ依存。ノードをクリックすると<b>その単元までの学習経路</b>が表示されます。</p>
+  <div class="bar">
+    <b id="pct" style="color:var(--txt);font-size:13.5px">0%</b>
+    <div class="pbar"><i id="fill"></i></div>
+    <span id="cnt"></span>
+    <span class="sep"></span>
+    <button onclick="zoom(-1)">−</button><button onclick="zoom(0)">全体</button><button onclick="zoom(1)">＋</button>
+    <button onclick="toggleML()" id="mlbtn">ML必須のみ</button>
+    <button onclick="resetAll()">リセット</button>
+    <span class="sep"></span>
+    <span class="lg" data-f="calc"><i class="dot" style="background:var(--calc)"></i>微分積分系</span>
+    <span class="lg" data-f="lin"><i class="dot" style="background:var(--lin)"></i>線形代数系</span>
+    <span class="lg" data-f="disc"><i class="dot" style="background:var(--disc)"></i>離散・基礎</span>
+    <span class="lg" data-f="prob"><i class="dot" style="background:var(--prob)"></i>確率・統計</span>
+    <span class="lg" data-f="bridge"><i class="dot" style="background:var(--bridge)"></i>応用・合流</span>
+    <span class="lg" style="cursor:default"><i class="dot" style="background:var(--ml);border-radius:50%"></i>ML必須</span>
+  </div>
+</div>
+
+<div class="scroll"><div class="canvas" id="cv"><svg class="edges" id="sv"></svg></div></div>
+
+<div class="foot">
+  横スクロール／ズームで全体表示。進捗はブラウザに保存されます。<br>
+  <b style="color:var(--dim)">主軸（太枠）</b>＝理系学部で必修の微分積分・線形代数。それ以外は学科・進路に応じて取捨選択してください。
+</div>
+
+<div class="mask" id="mask" onclick="closeDr()"></div>
+<div class="dr" id="dr"><button class="x" onclick="closeDr()">×</button><div id="drc"></div></div>
+
+<script>
+/* ================= レイアウト定数 ================= */
+const COL={A:20,B:214,C:408, D:626,E:820, F:1038,G:1232};
+const W=186,H=66,ROW=r=>34+r*118;
+
+/* ================= ノード ================= */
+const N={
+/* --- 根 --- */
+root_hs:{x:187,w:240,r:0,c:"bridge",t:"高校数学の橋渡し",s:"三角/指数/対数・数列・Σ記法・極限の直観",
+ term:"最初の2〜3週間",why:"大学の講義は高校範囲を既知として全速力で進む。ここの穴は必ず後で表面化する。",
+ topics:["三角関数の加法定理と微分公式","指数・対数の性質、自然対数 e の定義","数列と Σ 記法、等比級数の和","高校範囲の微分積分の計算練習","ベクトルの内積と成分表示"],
+ tip:"到達目安：∫x·e^x dx、sin x の n 次導関数、Σ(1/2)^n が手を止めずに書けること。"},
+root_log:{x:1108,w:240,r:0,c:"disc",t:"数学の言葉（論理・集合・写像）",s:"命題論理・量化子・集合演算・写像・全単射",
+ term:"最初の2週間",why:"「∀ε∃δ」を読む、定理の仮定と結論を切り分ける、反例を作る——全ての数学の読み書きの基礎。ここを飛ばすと ε-δ で必ず躓く。",
+ topics:["命題・論理結合子・真理値表","全称記号 ∀ と存在記号 ∃、量化子の順序","否定の作り方（ド・モルガン）","集合演算・べき集合・直積","写像、単射・全射・全単射、逆写像","同値関係と商集合"],
+ tip:"「∀x∃y P(x,y)」と「∃y∀x P(x,y)」の違いを例で説明できれば合格。"},
+
+/* ================= 解析系（微分積分が主軸） ================= */
+lim:{col:"A",r:1,c:"calc",core:1,t:"極限と連続性",s:"ε-δ論法・上限公理・中間値の定理",
+ term:"1年前期 微積I",why:"「収束する」を定義できないと以降の定理の主張が読めない。理系学部で最初の関門。",
+ topics:["数列の収束と単調収束定理","実数の連続性（上限公理）","関数の極限と ε-δ 論法","中間値の定理・最大値の定理","一様連続性"],
+ tip:"ε-δ はまず「書ける」より「読める」を目標に。∀ε ∃δ の順序が全て。"},
+dif:{col:"A",r:2,c:"calc",core:1,t:"微分法",s:"導関数・連鎖律・平均値の定理・ロピタル",
+ term:"1年前期 微積I",why:"連鎖律がここで初めて厳密に登場する。誤差逆伝播はこれの多変数版にすぎない。",
+ topics:["微分可能性と連続性の関係","合成関数の微分（連鎖律）","逆関数の微分","平均値の定理・ロルの定理","ロピタルの定理","高階導関数、ライプニッツ則"]},
+tay:{col:"A",r:3,c:"calc",core:1,ml:1,t:"テイラー展開",s:"マクローリン展開・剰余項・多項式近似",
+ term:"1年前期 微積I",why:"「難しい関数を多項式で置き換える」という数値計算・最適化の中心発想。2次近似がニュートン法。",
+ topics:["テイラーの定理と剰余項（ラグランジュ形）","主要関数の展開：e^x, sin x, log(1+x), (1+x)^α","漸近展開と極限計算","極値判定への応用"],
+ mlUse:"損失関数の2次近似 → ニュートン法・自然勾配法。活性化関数の近似解析。"},
+int:{col:"B",r:3,c:"calc",core:1,t:"リーマン積分と基本定理",s:"区分求積・可積分性・置換/部分積分",
+ term:"1年後期 微積I",why:"「積分＝微分の逆」は定理であって定義ではない。この区別が理解の分かれ目。",
+ topics:["リーマン和と可積分条件","微積分学の基本定理（第一・第二）","置換積分・部分積分","有理関数の部分分数分解","三角・無理関数の積分技法"]},
+pd:{col:"A",r:4,c:"calc",core:1,ml:1,t:"偏微分と勾配 ∇f",s:"偏微分・全微分可能性・方向微分・接平面",
+ term:"2年前期 微積II",why:"勾配降下法の「勾配」。∇f が最急増加方向を指す理由は内積の視点で理解する。",
+ topics:["偏導関数と全微分可能性の違い","勾配 ∇f と方向微分","接平面・線形近似","C¹級関数とシュワルツの定理"],
+ mlUse:"θ ← θ − η∇L(θ)。全ての学習アルゴリズムの心臓部。"},
+imp:{col:"B",r:4,c:"calc",core:1,ml:1,t:"広義積分と特殊関数",s:"無限区間・収束判定・Γ関数・ガウス積分",
+ term:"1年後期 微積I",why:"確率密度の積分はすべて広義積分。∫f(x)dx = 1 が定義できる根拠。",
+ topics:["無限区間の積分と収束判定","特異点をもつ積分、比較判定法","ガンマ関数 Γ(s)、ベータ関数 B(p,q)","ガウス積分 ∫e^(−x²)dx = √π"],
+ mlUse:"正規分布の正規化定数、ガンマ分布・ベータ分布。ベイズの共役事前分布の基礎。"},
+ser:{col:"C",r:4,c:"calc",core:1,t:"級数と一様収束",s:"収束判定・絶対収束・べき級数・収束半径",
+ term:"1年後期 微積I",why:"テイラー展開が「いつ・どこまで」正しいかを保証する理論。一様収束は項別微分の許可証。",
+ topics:["正項級数の収束判定（比・根・積分）","絶対収束と条件収束、リーマンの再配列定理","各点収束と一様収束","べき級数と収束半径","項別微分・項別積分"]},
+chain:{col:"A",r:5,c:"calc",core:1,ml:1,t:"連鎖律とヤコビ行列",s:"多変数連鎖律・ヤコビ行列 J・ヘッセ行列 H",
+ term:"2年前期 微積II",why:"誤差逆伝播法＝ヤコビ行列の連鎖積。深層学習の理論的中身はほぼこれ。",
+ topics:["多変数連鎖律の行列表現","ヤコビ行列 J = (∂fᵢ/∂xⱼ)","ヘッセ行列 H = (∂²f/∂xᵢ∂xⱼ)","ベクトル値関数の微分","陰関数定理・逆関数定理"],
+ mlUse:"Backpropagation は ∂L/∂θ = J₁ᵀJ₂ᵀ…∇L の計算。autograd の実体。"},
+mint:{col:"B",r:5,c:"calc",core:1,ml:1,t:"重積分と変数変換",s:"累次積分・フビニの定理・ヤコビアン",
+ term:"2年後期 微積II",why:"確率変数の変換公式そのもの。ヤコビ行列式が「体積の伸縮率」として効く。",
+ topics:["累次積分とフビニの定理","積分順序の交換","極座標・円柱座標・球座標変換","変数変換公式 dxdy = |J| dudv","ガウス積分の極座標による計算"],
+ mlUse:"p_Y(y)=p_X(x)|det J|⁻¹ → VAE の再パラメータ化、Normalizing Flow。"},
+ode:{col:"C",r:5,c:"calc",t:"常微分方程式",s:"変数分離・線形ODE・定数係数系・解の存在一意性",
+ term:"1〜2年 必修（理工系）",why:"物理・化学・生物・制御・経済のモデルはほぼ全て微分方程式。線形ODEの解法は固有値問題そのもの。",
+ topics:["変数分離形・完全形・積分因子","定数係数線形微分方程式と特性方程式","連立線形ODE ⟺ 行列の指数関数 e^(At)","解の存在と一意性（リプシッツ条件）","相図と安定性解析","級数解法・ラプラス変換による解法"],
+ mlUse:"Neural ODE、拡散モデルの確率微分方程式、勾配流としての学習ダイナミクス。"},
+meas:{col:"A",r:6,c:"calc",t:"測度論とルベーグ積分",s:"σ加法族・可測関数・収束定理",
+ term:"3年〜（数学科は2年）",why:"リーマン積分は「極限と積分の交換」に弱い。測度論はそれを解決し、確率論の厳密な土台になる。確率論を本気でやるなら必須。",
+ topics:["σ加法族と測度、ルベーグ測度","可測関数とルベーグ積分","単調収束定理・優収束定理","フビニ・トネリの定理","Lᵖ空間と完備性","ほとんど至るところ（a.e.）の概念"],
+ mlUse:"確率＝測度、確率変数＝可測関数、期待値＝積分。測度論的確率論の言語で書かれた論文を読むための前提。"},
+vec:{col:"B",r:6,c:"calc",t:"ベクトル解析",s:"線積分・面積分・grad/div/rot・積分定理",
+ term:"2年 必修（物理・機械・電気）",why:"電磁気・流体・連続体力学の言語。ML中心なら優先度は下がるが、物理系なら必修。",
+ topics:["スカラー場・ベクトル場","線積分と保存場、ポテンシャル","grad, div, rot と∇演算子","グリーンの定理","ガウスの発散定理・ストークスの定理","曲線座標系"]},
+cplx:{col:"C",r:6,c:"calc",t:"複素関数論",s:"正則関数・コーシーの積分定理・留数",
+ term:"2年 必修（電気・物理・機械）",why:"実数のままでは解けない積分が一気に解ける。フーリエ変換・信号処理・制御理論の理論的背景。",
+ topics:["複素数と複素平面、極形式","正則性とコーシー・リーマンの方程式","複素積分とコーシーの積分定理・積分公式","テイラー展開とローラン展開","孤立特異点の分類、留数定理","実定積分への応用、等角写像"],
+ mlUse:"フーリエ変換・Z変換の理論的基礎。信号処理系・時系列モデルの土台。"},
+opt:{col:"A",r:7,c:"calc",core:1,ml:1,t:"多変数の極値とラグランジュ乗数法",s:"停留点・ヘッセ行列判定・制約付き最適化",
+ term:"2年前期 微積II",why:"「制約のもとで最適化する」というMLの基本形。ヘッセ行列の正定値性で線形代数と合流する。",
+ topics:["多変数テイラー展開（2次まで）","停留点とヘッセ行列による極値判定","陰関数定理","ラグランジュの未定乗数法","凸関数と大域的最適性"],
+ mlUse:"SVM の双対問題、KKT条件、Ridge/Lasso 正則化の理論的土台。"},
+diffgeo:{col:"B",r:7,c:"calc",t:"微分幾何入門",s:"曲線・曲面・曲率・多様体の初歩",
+ term:"3年〜 選択",why:"「曲がった空間の上での微積分」。データが低次元多様体上に乗っているという仮説（多様体仮説）の言語。",
+ topics:["曲線の曲率と捩率、フレネ・セレの公式","曲面の第一・第二基本形式","ガウス曲率と平均曲率、ガウス・ボンネの定理","多様体・接空間・微分形式の初歩","リーマン計量と測地線"],
+ mlUse:"多様体学習（t-SNE, UMAP）、自然勾配法（フィッシャー情報計量）、幾何的深層学習。"},
+fourier:{col:"C",r:7,c:"calc",ml:1,t:"フーリエ解析・ラプラス変換",s:"フーリエ級数/変換・畳み込み・伝達関数",
+ term:"2年 必修（工学系）",why:"「関数を周波数に分解する」。信号処理・画像処理・微分方程式・畳み込みの全ての基礎。内積空間の直交展開の最重要例。",
+ topics:["フーリエ級数と直交関数系","フーリエ変換とその性質","畳み込み定理","デルタ関数と超関数の初歩","離散フーリエ変換 DFT と FFT","ラプラス変換と伝達関数、逆変換"],
+ mlUse:"CNN の畳み込み、スペクトログラム（音声認識）、位置エンコーディング、フーリエ特徴、拡散モデルのノイズスケジュール解析。"},
+funcan:{col:"A",r:8,c:"calc",t:"関数解析入門",s:"バナッハ空間・ヒルベルト空間・作用素",
+ term:"3〜4年 選択",why:"線形代数を無限次元に拡張したもの。「関数のなすベクトル空間」を扱う。カーネル法の理論的な家。",
+ topics:["ノルム空間・バナッハ空間・完備性","ヒルベルト空間と正射影定理","正規直交系と展開定理","有界線形作用素、双対空間","スペクトル理論の初歩","リースの表現定理"],
+ mlUse:"再生核ヒルベルト空間（RKHS）＝カーネル法の理論的基盤。ガウス過程、表現定理（Representer Theorem）。"},
+pde:{col:"B",r:8,c:"calc",t:"偏微分方程式",s:"熱/波動/ラプラス方程式・変数分離・境界値問題",
+ term:"2〜3年 選択〜必修",why:"熱伝導・波動・拡散・電位——連続体の現象はすべて偏微分方程式。フーリエ解析の主たる応用先。",
+ topics:["1階PDEと特性曲線法","熱方程式・波動方程式・ラプラス方程式","変数分離法とフーリエ級数解","境界条件と固有関数展開","グリーン関数","数値解法（差分法・有限要素法）の概要"],
+ mlUse:"拡散モデルの前向き過程はフォッカー・プランク方程式。Physics-Informed Neural Networks（PINN）。"},
+varc:{col:"C",r:8,c:"calc",t:"変分法",s:"汎関数の最適化・オイラー・ラグランジュ方程式",
+ term:"3年〜 選択",why:"「関数を変数として最適化する」。最小作用の原理、最短経路、そして変分推論の名前の由来。",
+ topics:["汎関数と変分","オイラー・ラグランジュ方程式","等周問題・制約付き変分","ハミルトンの原理と解析力学","直接法（リッツ法）"],
+ mlUse:"変分推論（VI）、ELBO の導出、VAE の変分下界。エントロピー最大化原理。"},
+
+/* ================= 代数系（線形代数が主軸） ================= */
+mat:{col:"D",r:1,c:"lin",core:1,t:"行列とベクトルの演算",s:"行列積・転置・逆行列・正則性",
+ term:"1年前期 線形I",why:"以降すべての計算の言語。積が「行×列」である理由は線形写像の合成として後で回収する。",
+ topics:["和・スカラー倍・積、非可換性","転置、対称行列、直交行列","逆行列とその性質","ブロック行列","対角・三角・冪等行列"],
+ mlUse:"データ行列 X（行=サンプル・列=特徴量）が全ての出発点。XᵀX は共分散の骨格。"},
+gauss:{col:"D",r:2,c:"lin",core:1,t:"連立一次方程式とガウスの消去法",s:"行基本変形・階段形・rank・解の構造",
+ term:"1年前期 線形I",why:"rank・像・核・次元という全概念の計算的入口。手で解ける力がないと抽象論が絵空事になる。",
+ topics:["行基本変形と行既約階段形（RREF）","階数 rank の定義と意味","解の存在条件と自由度","同次形の解空間","LU分解"],
+ mlUse:"正規方程式 XᵀXβ = Xᵀy を解く＝線形回帰。rank落ち＝多重共線性。"},
+det:{col:"D",r:3,c:"lin",core:1,t:"行列式",s:"多重線形性・余因子展開・符号付き体積",
+ term:"1年前期 線形I",why:"「体積の拡大率」という幾何的意味が本質。重積分の変数変換で微積と合流する。",
+ topics:["置換による定義と多重線形交代性","余因子展開、クラメルの公式","det(AB) = det(A)det(B)","幾何的意味：符号付き体積","正則性 ⟺ det ≠ 0"],
+ mlUse:"多変量正規分布の密度に |Σ|^(−1/2) が現れる。Normalizing Flow はヤコビ行列式そのもの。"},
+vs:{col:"E",r:3,c:"lin",core:1,t:"ベクトル空間と基底",s:"公理・部分空間・一次独立・基底・次元",
+ term:"1年後期 線形I",why:"「行列の計算」から「構造の理論」へ変わる地点。抽象度が跳ね上がるが、ここが本体。",
+ topics:["ベクトル空間の公理","部分空間、和空間・直和","一次独立と一次従属","基底と次元、基底の取り替え","関数空間・多項式空間の例"],
+ tip:"具体例（Rⁿ・多項式・行列全体・関数）を常に3つ並べて考えると抽象論に耐えられる。"},
+ip:{col:"D",r:4,c:"lin",core:1,ml:1,t:"内積空間と直交性",s:"内積・ノルム・直交補空間・グラム・シュミット",
+ term:"2年前期 線形II",why:"「距離」と「角度」が線形代数に入る瞬間。類似度・射影・最小二乗はすべてここから派生。",
+ topics:["内積の公理、ノルム、コーシー・シュワルツの不等式","正規直交基底","グラム・シュミットの直交化法","直交補空間 W⊥","直交行列と QR 分解"],
+ mlUse:"コサイン類似度＝正規化された内積。埋め込みベクトルの「近さ」はこの構造。"},
+lm:{col:"E",r:4,c:"lin",core:1,t:"線形写像と次元定理",s:"像 Im・核 Ker・表現行列・rank + nullity",
+ term:"1年後期 線形I",why:"「行列＝線形写像の座標表現」への視点転換。基底を変えれば行列は変わるが写像は同じ。",
+ topics:["線形写像の定義と例","像と核、rank + nullity = dim V","表現行列、基底変換と相似変換","同型写像","写像の合成 ⟺ 行列の積"],
+ mlUse:"Embedding 層＝線形写像。次元削減は「像の次元を落とす」操作。"},
+proj:{col:"D",r:5,c:"lin",core:1,ml:1,t:"直交射影と最小二乗法",s:"射影行列・正規方程式・擬似逆行列",
+ term:"2年前期 線形II",why:"線形回帰の幾何的正体。「解が無い方程式を、一番近いところで解く」という発想。",
+ topics:["直交射影 P = A(AᵀA)⁻¹Aᵀ","最小二乗解と正規方程式","射影行列の性質（冪等・対称）","ムーア・ペンローズ擬似逆行列 A⁺","QR分解による安定な数値解法"],
+ mlUse:"最小二乗法＝y の列空間 Col(X) への直交射影。これが線形回帰の全て。"},
+eig:{col:"E",r:5,c:"lin",core:1,ml:1,t:"固有値・固有ベクトルと対角化",s:"固有多項式・対角化可能性・スペクトル分解",
+ term:"2年前期 線形II",why:"行列を「その行列固有の座標系」で見る技術。線形代数の最大の到達点。",
+ topics:["固有値・固有ベクトル、固有多項式","対角化可能性の条件","対称行列のスペクトル分解 A = QΛQᵀ","ケーリー・ハミルトンの定理","行列の指数関数 e^(At)"],
+ mlUse:"PCA＝共分散行列の固有値分解。マルコフ連鎖の定常分布＝固有値1の固有ベクトル。"},
+quad:{col:"D",r:6,c:"lin",core:1,ml:1,t:"二次形式と正定値性",s:"xᵀAx・主軸変換・正定値/半正定値・レイリー商",
+ term:"2年後期 線形II",why:"ヘッセ行列・共分散行列・カーネル行列はすべて対称行列の二次形式。凸性の判定基準。",
+ topics:["二次形式の行列表現と標準形","主軸変換","正定値・半正定値・不定の分類","シルヴェスターの判定法（首座小行列式）","レイリー商と最大化"],
+ mlUse:"共分散行列は常に半正定値。カーネル法の Mercer 条件＝半正定値性。凸最適化の判定。"},
+jordan:{col:"E",r:6,c:"lin",t:"ジョルダン標準形",s:"対角化できない行列・広義固有空間・冪零",
+ term:"2年後期 線形II",why:"対角化できない行列に対する「できる限りの対角化」。重解をもつ線形ODEの解の形を決める。",
+ topics:["広義固有空間と冪零行列","ジョルダン細胞とジョルダン標準形","最小多項式","行列の指数関数の計算","不変部分空間分解"],
+ mlUse:"実務では数値的に不安定なため直接は使わないが、線形力学系の収束速度の理論的解析に必要。"},
+svd:{col:"D",r:7,c:"lin",core:1,ml:1,t:"特異値分解 SVD",s:"A = UΣVᵀ・低ランク近似・条件数",
+ term:"2年後期 線形II/発展",why:"正方でない任意の行列に使える最強の分解。実務で最も使われる線形代数のツール。",
+ topics:["特異値と特異ベクトル、A = UΣVᵀ","AᵀA・AAᵀ の固有値との関係","低ランク近似とエッカート・ヤングの定理","条件数と数値的安定性","擬似逆行列の SVD 表現"],
+ mlUse:"PCA の実装、推薦システムの行列分解、LoRA の低ランク近似、潜在意味解析。"},
+grp:{col:"E",r:7,c:"lin",t:"群・環・体（抽象代数）",s:"群の公理・準同型・剰余類・環と体",
+ term:"2〜3年（数学科は必修）",why:"「対称性」を数学的に扱う言語。線形代数は「体の上の加群」の特別な場合という視点が得られる。",
+ topics:["群の定義、部分群、巡回群、対称群","準同型・同型、剰余群と準同型定理","環・イデアル・多項式環","体と拡大体、有限体","群の作用と軌道・安定化群"],
+ mlUse:"同変ニューラルネット（Equivariant NN）、群畳み込み、対称性を組み込んだモデル設計。暗号理論。"},
+tensor:{col:"D",r:8,c:"lin",ml:1,t:"テンソルと多重線形代数",s:"テンソル積・添字記法・テンソル分解",
+ term:"3年〜 選択",why:"行列は2階のテンソル。深層学習が扱うデータは3階・4階のテンソル。添字記法に慣れると計算が一気に楽になる。",
+ topics:["多重線形写像とテンソル積","共変・反変と添字記法、アインシュタインの縮約","テンソルの縮約と転置","CP分解・Tucker分解","（物理系）計量テンソルと座標変換"],
+ mlUse:"PyTorch/TensorFlow の全演算はテンソル操作。einsum、Attention の多次元縮約、テンソル分解による圧縮。"},
+sgraph:{col:"E",r:8,c:"lin",ml:1,t:"スペクトルグラフ理論",s:"隣接行列・グラフラプラシアン・固有値と連結性",
+ term:"3年〜 選択",why:"グラフという離散対象を、行列の固有値という連続的な道具で解析する。離散数学と線形代数の合流点。",
+ topics:["隣接行列・次数行列・グラフラプラシアン L = D − A","Lの固有値と連結成分数の関係","フィードラーベクトルとグラフ分割","チーガー不等式","ランダムウォークと遷移行列"],
+ mlUse:"スペクトラルクラスタリング、グラフニューラルネット（GCN）の畳み込み定義、次元削減（Laplacian Eigenmaps）。"},
+
+/* ================= 離散・基礎 ================= */
+comb:{col:"F",r:1,c:"disc",t:"組合せ論と数え上げ",s:"順列・組合せ・二項係数・包除原理・鳩の巣",
+ term:"1年（情報系必修）",why:"「場合の数を正確に数える」技術。確率論の土台であり、アルゴリズムの計算量評価の基礎。",
+ topics:["順列・組合せ・重複組合せ","二項定理と二項係数の恒等式","包除原理","鳩の巣原理","分割数・スターリング数の初歩"],
+ mlUse:"確率の古典的定義、モデルの組合せ爆発の見積もり、特徴量の相互作用の数え上げ。"},
+logic:{col:"G",r:1,c:"disc",t:"証明技法と数理論理",s:"帰納法・背理法・対偶・反例・形式体系",
+ term:"1年",why:"定理を「読む」から「証明する」へ。数学的帰納法は再帰アルゴリズムの正当性証明そのもの。",
+ topics:["直接証明・対偶・背理法","数学的帰納法、強い帰納法、構造帰納法","反例の作り方","述語論理と推論規則","（発展）健全性・完全性、ゲーデルの不完全性定理の主張"],
+ tip:"証明が書けるかどうかは才能ではなく型の習熟。まず10個の定理の証明を写経する。"},
+rec:{col:"F",r:2,c:"disc",t:"漸化式と母関数",s:"線形漸化式・特性方程式・生成関数",
+ term:"1〜2年",why:"離散版の微分方程式。線形漸化式の解法は固有値問題と同じ構造をもつ（フィボナッチ＝行列の冪）。",
+ topics:["線形漸化式と特性方程式","定数変化法・非同次項の扱い","母関数（生成関数）による解法","分割統治の再帰式とマスター定理","（応用）行列の冪による高速計算"],
+ mlUse:"RNN の隠れ状態は非線形漸化式。時系列モデル AR(p) は線形漸化式そのもの。"},
+nt:{col:"G",r:2,c:"disc",t:"初等数論と合同算術",s:"整除・ユークリッド互除法・合同式・オイラー関数",
+ term:"1〜2年（情報系）",why:"整数の世界の構造。暗号（RSA）・ハッシュ・乱数生成の理論的基礎で、抽象代数への入口。",
+ topics:["約数・素数・素因数分解の一意性","ユークリッドの互除法と拡張互除法","合同式 mod n、中国剰余定理","フェルマーの小定理・オイラーの定理","原始根と離散対数"],
+ mlUse:"ハッシュ関数、疑似乱数生成器、局所鋭敏型ハッシュ（LSH）。"},
+graph:{col:"F",r:3,c:"disc",t:"グラフ理論",s:"連結性・木・オイラー路・彩色・マッチング",
+ term:"2年（情報系必修）",why:"ネットワーク・依存関係・関係データを扱う言語。このツリーマップ自体が有向非巡回グラフ（DAG）。",
+ topics:["グラフ・有向グラフ・重み付きグラフ","連結性・木・全域木","オイラー路とハミルトン路","最短経路（ダイクストラ）・最大流","彩色問題・マッチング・平面性","DAG とトポロジカルソート"],
+ mlUse:"グラフニューラルネット、知識グラフ、ベイジアンネットワーク（DAG）、計算グラフ（autograd の内部表現）。"},
+alg:{col:"G",r:3,c:"disc",t:"アルゴリズムと計算量",s:"O記法・分割統治・動的計画法・NP困難",
+ term:"1〜2年（情報系必修）",why:"「解けるか」だけでなく「現実的な時間で解けるか」。ML の実装可能性を決める。",
+ topics:["漸近記法 O, Ω, Θ と計算量解析","分割統治とマスター定理","動的計画法・貪欲法","グラフアルゴリズム","P vs NP、NP完全性、近似アルゴリズム","（発展）計算可能性、停止問題"],
+ mlUse:"厳密推論が NP困難だから近似推論（変分推論・MCMC）を使う、という論理の根拠。"},
+topo:{col:"F",r:4,c:"disc",t:"位相空間論",s:"開集合・連続写像・コンパクト性・連結性",
+ term:"2〜3年（数学科）",why:"「近い」という概念を距離なしで定義する。ε-δ の抽象化であり、解析学全体の骨格。",
+ topics:["距離空間と開球、開集合・閉集合","位相空間の公理、基底と近傍","連続写像の位相的特徴づけ","コンパクト性（ハイネ・ボレル）","連結性・弧状連結性","完備性と縮小写像の原理"],
+ mlUse:"位相的データ解析（TDA）、パーシステントホモロジー。多様体仮説の厳密な言語。"},
+ff:{col:"G",r:4,c:"disc",t:"有限体と符号理論",s:"GF(2)・線形符号・誤り訂正・ハミング距離",
+ term:"2〜3年 選択（情報・通信）",why:"「有限個の元しかない世界での線形代数」。誤り訂正符号は GF(2) 上の線形代数そのもの。",
+ topics:["有限体 GF(p), GF(2ⁿ) の構成","GF(2) 上のベクトル空間と行列","線形符号、生成行列・検査行列","ハミング距離と誤り訂正能力","ハミング符号・リード・ソロモン符号","巡回符号と多項式表現"],
+ mlUse:"局所鋭敏型ハッシュ、量子化・圧縮、ランダム射影の構成。"},
+
+/* ================= 確率・統計 ================= */
+prob:{col:"F",r:5,c:"prob",ml:1,t:"確率の基礎",s:"標本空間・条件付き確率・独立性・ベイズの定理",
+ term:"2年 必修",why:"不確実性を数として扱う。ベイズの定理は「データを見て信念を更新する」というML全体の枠組み。",
+ topics:["標本空間・事象・確率の公理","条件付き確率と乗法定理","独立性と排反の違い","全確率の定理とベイズの定理","組合せ論的確率"],
+ mlUse:"P(パラメータ|データ) ∝ P(データ|パラメータ)P(パラメータ)。教師あり学習も生成モデルもこの式の変奏。"},
+desc:{col:"G",r:5,c:"prob",t:"記述統計とデータの要約",s:"平均・分散・相関・可視化・外れ値",
+ term:"1〜2年",why:"モデルを作る前にデータを見る。相関係数は内積の正規化であり、線形代数と直結している。",
+ topics:["代表値（平均・中央値・最頻値）と散らばり","分散・標準偏差・四分位範囲","共分散と相関係数","標準化とスケーリング","分布の可視化、歪度・尖度","シンプソンのパラドックスなどの落とし穴"],
+ mlUse:"前処理（標準化・正規化）は全てここ。相関係数 = 中心化ベクトルのコサイン類似度。"},
+rv:{col:"F",r:6,c:"prob",ml:1,t:"確率変数と確率分布",s:"確率密度・期待値・分散・主要な分布",
+ term:"2年 必修",why:"確率を関数として扱う。密度関数の積分は広義積分、期待値の線形性は線形代数の言葉。",
+ topics:["離散/連続確率変数、確率質量関数・密度関数","累積分布関数、期待値・分散・積率","主要分布：二項・ポアソン・正規・指数・ガンマ・ベータ","積率母関数・特性関数","変数変換とヤコビアン","同時分布・周辺分布・条件付き分布・独立性"],
+ mlUse:"尤度関数はここから。分布族の選択がモデル設計そのもの。"},
+bayes:{col:"G",r:6,c:"prob",ml:1,t:"ベイズ統計の基礎",s:"事前分布・事後分布・共役性・ベイズ更新",
+ term:"2〜3年 選択",why:"「パラメータも確率変数」という立場。正則化・不確実性推定・オンライン学習が統一的に理解できる。",
+ topics:["事前分布・尤度・事後分布","共役事前分布（ベータ-二項、ガンマ-ポアソン、正規-正規）","MAP推定と最尤推定の関係","予測分布","階層ベイズモデル","（計算）MCMC・変分推論の必要性"],
+ mlUse:"L2正則化＝ガウス事前分布のMAP推定、L1＝ラプラス事前分布。ベイズ最適化、不確実性の定量化。"},
+lln:{col:"F",r:7,c:"prob",ml:1,t:"大数の法則と中心極限定理",s:"確率収束・分布収束・CLT・集中不等式",
+ term:"2〜3年",why:"「サンプル平均が真の平均に近づく」ことの保証。なぜ機械学習が有限データで機能するのかの根拠。",
+ topics:["確率収束・概収束・分布収束","大数の弱法則・強法則","中心極限定理とその証明の筋","チェビシェフ・マルコフの不等式","（発展）ヘフディング・チェルノフの集中不等式","デルタ法"],
+ mlUse:"ミニバッチ勾配が真の勾配の不偏推定である根拠。汎化誤差の上界（PAC学習理論）の道具。"},
+mvn:{col:"G",r:7,c:"prob",ml:1,t:"多変量正規分布と共分散構造",s:"N(μ,Σ)・共分散行列・条件付き正規・確率楕円",
+ term:"2〜3年",why:"微積（重積分・ヤコビアン）と線形代数（二次形式・行列式・固有値）が同時に使われる、統合の到達点。",
+ topics:["多変量正規分布の密度式の導出","共分散行列 Σ の性質（対称・半正定値）","マハラノビス距離と確率楕円","線形変換の下での不変性","条件付き分布・周辺分布も正規になること","コレスキー分解によるサンプリング"],
+ mlUse:"ガウス過程、カルマンフィルタ、VAE の潜在変数、GMM。密度式 exp(−½(x−μ)ᵀΣ⁻¹(x−μ))/√((2π)^k|Σ|) を読めることが到達目標。"},
+stat:{col:"F",r:8,c:"prob",ml:1,t:"統計的推測（推定・検定）",s:"最尤推定・信頼区間・仮説検定・回帰分析",
+ term:"2〜3年 必修",why:"データからパラメータを決める作法。最尤推定は「対数尤度の最適化」であり、微積の最適化そのもの。",
+ topics:["点推定：不偏性・一致性・有効性","最尤推定とフィッシャー情報量","信頼区間","仮説検定、第一種・第二種の過誤、p値の正しい解釈","線形回帰と最小二乗推定量の性質","分散分析、多重比較の問題"],
+ mlUse:"損失関数＝負の対数尤度。交差エントロピー＝ベルヌーイ分布の対数尤度。MSE＝正規分布の対数尤度。"},
+sp:{col:"G",r:8,c:"prob",ml:1,t:"確率過程とマルコフ連鎖",s:"マルコフ性・定常分布・ランダムウォーク・SDE",
+ term:"3年〜 選択",why:"時間とともに変化する確率現象。定常分布を固有値問題として解く点で、線形代数と直結。",
+ topics:["確率過程の定義、マルコフ性","遷移行列、既約性・非周期性","定常分布と極限分布（固有値1の固有ベクトル）","ランダムウォーク、ポアソン過程","マルチンゲール","（発展）ブラウン運動と確率微分方程式、伊藤の公式"],
+ mlUse:"MCMC（ギブスサンプリング・メトロポリス法）、強化学習のMDP、拡散モデルの前向き/逆向き過程。"},
+
+/* ================= 合流・応用 ================= */
+mdiff:{x:57,r:9,c:"bridge",ml:1,t:"行列微分・ベクトル微分",s:"∂(xᵀAx)/∂x・トレース微分・レイアウト記法",
+ term:"合流点（独学領域）",why:"標準講義ではほぼ扱われないが、ML論文を読むには必須。微積×線形代数の直接の交点。",
+ topics:["スカラーのベクトル微分、レイアウト記法の統一","∂(aᵀx)/∂x = a、∂(xᵀAx)/∂x = (A+Aᵀ)x","トレースを使った行列微分","行列式・逆行列の微分","テンソル記法（einsum）での微分","Matrix Cookbook の使い方"],
+ mlUse:"損失関数を行列表記で微分できれば、線形回帰・ロジスティック回帰・Attention の勾配を自力で導出できる。"},
+cvx:{x:343,r:9,c:"bridge",ml:1,t:"凸最適化",s:"凸関数・勾配降下法・ニュートン法・双対性・KKT",
+ term:"3年〜／ML必修",why:"「なぜ学習が収束するのか」の理論。凸なら大域最適が保証され、非凸なら保証されない理由がわかる。",
+ topics:["凸集合・凸関数、Jensen の不等式","1次条件・2次条件（ヘッセ行列の半正定値性）","勾配降下法と収束率、学習率の意味","ニュートン法・準ニュートン法（BFGS）","制約付き最適化：KKT条件、ラグランジュ双対","近接勾配法、劣勾配（L1正則化のため）"],
+ mlUse:"SGD/Adam の理論的背景、SVM の双対問題、L1正則化が疎解を生む幾何学的理由、線形計画・二次計画。"},
+numer:{x:629,r:9,c:"bridge",ml:1,t:"数値解析・数値線形代数",s:"誤差解析・条件数・反復法・分解の使い分け",
+ term:"2〜3年 選択／実務必修",why:"理論を手で計算できても実際は 10⁶ 次元。何が速く、何が数値的に壊れるかを知らないと実務で詰む。",
+ topics:["浮動小数点数と丸め誤差、桁落ち","条件数と数値的安定性","LU/QR/Cholesky/SVD の使い分けと計算量","反復法（ヤコビ法・共役勾配法）","非線形方程式の数値解法（ニュートン法）","数値積分・ODEの数値解法（ルンゲ・クッタ）","スパース行列の扱い"],
+ mlUse:"np.linalg.inv(A)@b ではなく solve(A,b) を使う理由。混合精度学習、勾配爆発/消失の数値的側面。"},
+mc:{x:915,r:9,c:"bridge",ml:1,t:"モンテカルロ法と確率的シミュレーション",s:"乱数生成・重点サンプリング・MCMC・分散削減",
+ term:"3年〜 選択",why:"解析的に解けない積分・期待値を、サンプリングで近似する。高次元で唯一実用的な方法。",
+ topics:["疑似乱数生成と逆関数法・棄却法","モンテカルロ積分と収束率 O(1/√n)","重点サンプリング、分散削減法","マルコフ連鎖モンテカルロ（MCMC）","ギブスサンプリング、メトロポリス・ヘイスティングス","（発展）ハミルトニアン・モンテカルロ"],
+ mlUse:"ベイズ推論の実装、ドロップアウトの不確実性推定、強化学習の方策評価、拡散モデルのサンプリング。"},
+info:{x:1201,r:9,c:"bridge",ml:1,t:"情報理論",s:"エントロピー・KL距離・相互情報量・符号化",
+ term:"3年〜 選択／ML必修",why:"「情報量」を数として測る。交差エントロピー損失も、変分推論の ELBO も、この言語で書かれている。",
+ topics:["シャノンエントロピー H(X) と結合/条件付きエントロピー","KLダイバージェンス（相対エントロピー）","相互情報量 I(X;Y)","交差エントロピーと符号長の関係","情報源符号化定理・通信路容量","（発展）フィッシャー情報量と情報幾何"],
+ mlUse:"分類の交差エントロピー損失、VAE の KL項、GAN の JS距離、特徴選択の相互情報量、蒸留の温度付きKL。"},
+mlmath:{x:562,w:320,r:10,c:"bridge",ml:1,t:"機械学習の数学（統合到達点）",s:"全分野が合流する地点／論文が読める状態",
+ term:"到達目標",why:"ここまでの分野が全て同時に使われる領域。個々の単元では見えなかった「なぜこの式なのか」が繋がる。",
+ topics:["線形回帰＝直交射影 ＋ 最尤推定","PCA＝共分散行列の固有値分解 / SVD","誤差逆伝播＝連鎖律 ＋ ヤコビ行列","SVM＝ラグランジュ双対 ＋ 半正定値カーネル","VAE＝変分法 ＋ KL距離 ＋ 変数変換","拡散モデル＝SDE ＋ フォッカー・プランク方程式","Transformer＝内積空間 ＋ テンソル縮約","汎化理論＝集中不等式 ＋ 計算量"],
+ mlUse:"到達確認：多変量正規分布の密度式・ELBO の導出・バックプロパゲーションの行列表現を、白紙から書けること。",
+ tip:"教材：Mathematics for Machine Learning（無料PDF）→ PRML / Deep Learning Book → 各分野の論文。"}
+};
+
+/* ================= 依存関係 ================= */
+/* [前提, 次, 1=分野横断（点線）] */
+const E=[
+ ["root_hs","lim"],["root_hs","mat"],["root_log","comb"],["root_log","logic"],
+ ["root_log","lim",1],["root_log","vs",1],["root_log","prob",1],
+ /* 解析 */
+ ["lim","dif"],["dif","tay"],["dif","int"],["dif","pd"],["dif","ode"],
+ ["int","imp"],["int","ser"],["int","mint"],["int","meas"],
+ ["tay","ser"],["tay","opt"],["tay","cplx"],
+ ["pd","chain"],["pd","mint"],["pd","vec"],["pd","pde"],
+ ["imp","fourier"],["imp","rv",1],
+ ["ser","cplx"],["ser","fourier"],["ser","ode"],["ser","meas"],["ser","lln",1],
+ ["chain","opt"],["chain","mdiff"],
+ ["mint","vec"],["mint","mc",1],["mint","mvn",1],
+ ["ode","pde"],["ode","varc"],["ode","numer"],["ode","sp",1],
+ ["meas","funcan"],["meas","sp",1],
+ ["vec","diffgeo"],["vec","pde"],
+ ["cplx","fourier"],
+ ["opt","cvx"],["opt","varc"],["opt","stat",1],
+ ["diffgeo","varc"],
+ ["fourier","pde"],["fourier","numer"],
+ ["funcan","mlmath"],["pde","numer"],["varc","cvx"],
+ /* 線形代数 */
+ ["mat","gauss"],["mat","det"],["mat","chain",1],["mat","desc",1],
+ ["gauss","det"],["gauss","vs"],["gauss","numer"],["gauss","ff",1],
+ ["det","eig"],["det","mint",1],["det","mvn",1],
+ ["vs","ip"],["vs","lm"],["vs","topo",1],
+ ["ip","proj"],["ip","quad"],["ip","fourier",1],["ip","funcan",1],
+ ["lm","proj"],["lm","eig"],["lm","grp"],["lm","tensor"],
+ ["proj","svd"],["proj","stat",1],
+ ["eig","quad"],["eig","jordan"],["eig","svd"],["eig","sgraph"],["eig","sp",1],
+ ["quad","svd"],["quad","opt",1],["quad","mvn",1],["quad","mdiff"],["quad","cvx"],
+ ["jordan","numer"],["jordan","sp",1],
+ ["svd","tensor"],["svd","numer"],["svd","mlmath"],
+ ["grp","tensor"],
+ ["tensor","mdiff"],["sgraph","mlmath"],
+ /* 離散 */
+ ["comb","rec"],["comb","graph"],["comb","prob",1],["comb","info",1],
+ ["logic","nt"],["logic","alg"],["logic","topo"],
+ ["rec","alg"],["rec","sp",1],
+ ["nt","ff"],["nt","alg"],
+ ["graph","sgraph",1],["graph","sp",1],
+ ["alg","numer"],
+ ["topo","meas",1],["topo","diffgeo",1],["topo","funcan",1],
+ ["ff","grp",1],
+ /* 確率統計 */
+ ["prob","rv"],["prob","bayes"],
+ ["desc","rv"],
+ ["rv","lln"],["rv","mvn"],["rv","sp"],["rv","mc",1],["rv","info",1],
+ ["bayes","stat"],["bayes","mc",1],
+ ["lln","stat"],["lln","mc",1],
+ ["mvn","info",1],["mvn","mlmath"],
+ ["stat","mlmath"],["sp","mlmath"],
+ /* 合流 */
+ ["mdiff","mlmath"],["cvx","mlmath"],["numer","mlmath"],["mc","mlmath"],["info","mlmath"]
+];
+
+/* ================= 描画 ================= */
+const cv=document.getElementById("cv"),sv=document.getElementById("sv");
+let store={};try{store=JSON.parse(localStorage.getItem("mathfull")||"{}")}catch(e){store={}}
+const save=()=>{try{localStorage.setItem("mathfull",JSON.stringify(store))}catch(e){}};
+const CC={calc:"var(--calc)",lin:"var(--lin)",disc:"var(--disc)",prob:"var(--prob)",bridge:"var(--bridge)"};
+const CH={calc:"#4f9cf9",lin:"#f5a524",disc:"#2dd4bf",prob:"#f472b6",bridge:"#a78bfa"};
+const CN={calc:"微分積分系",lin:"線形代数系",disc:"離散・基礎",prob:"確率・統計",bridge:"応用・合流"};
+/* 分野をまたぐエッジは自動判定（根と合流帯は中立） */
+const ROOTS=new Set(["root_hs","root_log"]);
+const isCross=(a,b)=>!ROOTS.has(a)&&N[a].c!=="bridge"&&N[b].c!=="bridge"&&N[a].c!==N[b].c;
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+/* 帯 */
+[["解析 — 微分積分を主軸に",10,1,8,594,"79,156,249"],
+ ["代数 — 線形代数を主軸に",616,1,8,400,"245,165,36"],
+ ["離散数学・数学の基礎",1028,1,4,404,"45,212,191"],
+ ["確率・統計",1028,5,8,404,"244,114,182"]].forEach(([lb,x,r1,r2,w,rgb])=>{
+  const d=document.createElement("div");d.className="band";
+  d.style.cssText=`left:${x}px;top:${ROW(r1)-26}px;width:${w}px;height:${ROW(r2)+H+16-(ROW(r1)-26)}px;
+   background:rgba(${rgb},.035);border:1px solid rgba(${rgb},.14)`;
+  d.innerHTML=`<span style="color:rgb(${rgb});top:-19px">${lb}</span>`;cv.appendChild(d);
+});
+const bb=document.createElement("div");bb.className="band";
+bb.style.cssText=`left:10px;top:${ROW(9)-26}px;width:1422px;height:${ROW(10)+H+16-(ROW(9)-26)}px;
+ background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.17)`;
+bb.innerHTML='<span style="color:#a78bfa;top:-19px">合流点 — 応用数学 / 機械学習の数学</span>';cv.appendChild(bb);
+
+const pos={},els={};
+Object.entries(N).forEach(([k,n])=>{
+ const x=n.x!==undefined?n.x:COL[n.col],w=n.w||W,y=ROW(n.r);
+ pos[k]={x,y,w,h:H};
+ const d=document.createElement("div");
+ d.className="n"+(store[k]?" done":"")+(n.core?" core":"");d.dataset.k=k;d.dataset.c=n.c;
+ d.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${H}px;--c:${CC[n.c]}`;
+ d.innerHTML=`${n.ml?'<i class="mlb"></i>':''}<div class="ttl">${esc(n.t)}</div>
+  <div class="sb">${esc(n.s)}</div><div class="ck">✓</div>`;
+ d.querySelector(".ck").addEventListener("click",e=>{e.stopPropagation();
+  store[k]?delete store[k]:store[k]=1;d.classList.toggle("done");save();upd()});
+ d.addEventListener("click",()=>openDr(k));
+ d.addEventListener("mouseenter",()=>{if(!dr.classList.contains("on"))hi(k)});
+ d.addEventListener("mouseleave",()=>{if(!dr.classList.contains("on"))hi(null)});
+ cv.appendChild(d);els[k]=d;
+});
+
+const NS="http://www.w3.org/2000/svg";
+E.forEach(([a,b])=>{
+ const cross=isCross(a,b);
+ const p=pos[a],q=pos[b];
+ const x1=p.x+p.w/2,y1=p.y+p.h,x2=q.x+q.w/2,y2=q.y,dy=Math.max(26,(y2-y1)*.45);
+ const path=document.createElementNS(NS,"path");
+ path.setAttribute("d",`M${x1},${y1} C${x1},${y1+dy} ${x2},${y2-dy} ${x2},${y2}`);
+ path.setAttribute("class","edge"+(cross?" cross":""));
+ path.dataset.a=a;path.dataset.b=b;sv.appendChild(path);
+ const m=document.createElementNS(NS,"circle");
+ m.setAttribute("cx",x2);m.setAttribute("cy",y2-1);m.setAttribute("r",2.5);
+ m.setAttribute("fill",cross?"#463a6b":"#39415a");sv.appendChild(m);
+});
+
+/* 祖先・子孫 */
+const par={},chi={};
+E.forEach(([a,b])=>{(chi[a]=chi[a]||[]).push(b);(par[b]=par[b]||[]).push(a)});
+function walk(k,g){const s=new Set(),st=[k];
+ while(st.length){const c=st.pop();(g[c]||[]).forEach(n=>{if(!s.has(n)){s.add(n);st.push(n)}})}return s}
+
+function hi(k){
+ const eds=sv.querySelectorAll(".edge");
+ if(!k){eds.forEach(e=>e.classList.remove("hi","dim"));
+  Object.values(els).forEach(e=>e.classList.remove("dim"));return}
+ const anc=walk(k,par),des=walk(k,chi),rel=new Set([...anc,...des,k]);
+ eds.forEach(e=>{const on=rel.has(e.dataset.a)&&rel.has(e.dataset.b);
+  e.classList.toggle("hi",on);e.classList.toggle("dim",!on)});
+ Object.entries(els).forEach(([kk,e])=>e.classList.toggle("dim",!rel.has(kk)));
+}
+
+/* ドロワー */
+const dr=document.getElementById("dr"),drc=document.getElementById("drc"),mask=document.getElementById("mask");
+function openDr(k){
+ const n=N[k],pre=par[k]||[],nx=chi[k]||[];
+ const anc=[...walk(k,par)].sort((a,b)=>N[a].r-N[b].r||a.localeCompare(b));
+ Object.values(els).forEach(e=>e.classList.remove("sel"));els[k].classList.add("sel");
+ const col=CH[n.c];
+ drc.innerHTML=`
+  <h2>${esc(n.t)}</h2>
+  <div class="meta">
+    <span class="chip" style="color:${col};border-color:${col}44;background:${col}18">${CN[n.c]}</span>
+    ${esc(n.term)}${n.ml?' ・ <span style="color:var(--ml)">ML必須度 高</span>':''}${n.core?' ・ <span style="color:var(--txt)">主軸</span>':''}
+  </div>
+  <h4>なぜ学ぶか</h4><p>${esc(n.why)}</p>
+  <h4>主な内容</h4><ul>${n.topics.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+  ${n.mlUse?`<h4>ML・データ科学での使われ方</h4><div class="mlbox">${esc(n.mlUse)}</div>`:""}
+  ${n.tip?`<div class="tipbox">💡 ${esc(n.tip)}</div>`:""}
+  ${pre.length?`<h4>直前の前提</h4><div class="rel">${pre.map(p=>`<b onclick="openDr('${p}')">${esc(N[p].t)}</b>`).join("")}</div>`:""}
+  ${nx.length?`<h4>この先に進める単元</h4><div class="rel">${nx.map(p=>`<b onclick="openDr('${p}')">${esc(N[p].t)}</b>`).join("")}</div>`:""}
+  ${anc.length?`<h4>ここに到達するまでの学習経路（${anc.length}単元）</h4>
+    <ol class="route">${anc.map(a=>`<li class="${store[a]?'ok':''}" onclick="openDr('${a}')" style="cursor:pointer">${esc(N[a].t)}</li>`).join("")}</ol>`:""}`;
+ dr.classList.add("on");mask.classList.add("on");hi(k);
+}
+function closeDr(){dr.classList.remove("on");mask.classList.remove("on");
+ Object.values(els).forEach(e=>e.classList.remove("sel"));hi(null)}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDr()});
+
+/* フィルタ */
+const off=new Set();
+document.querySelectorAll(".lg[data-f]").forEach(el=>el.addEventListener("click",()=>{
+ const f=el.dataset.f;off.has(f)?off.delete(f):off.add(f);
+ el.classList.toggle("off",off.has(f));applyFilter();
+}));
+let mlOnly=false;
+function toggleML(){mlOnly=!mlOnly;
+ document.getElementById("mlbtn").style.color=mlOnly?"var(--ml)":"";applyFilter()}
+function applyFilter(){
+ Object.entries(els).forEach(([k,e])=>{
+  const n=N[k],hide=off.has(n.c)||(mlOnly&&!n.ml&&!n.core);
+  e.classList.toggle("hidden",hide)});
+ sv.querySelectorAll(".edge").forEach(e=>{
+  const a=els[e.dataset.a],b=els[e.dataset.b];
+  e.style.opacity=(a.classList.contains("hidden")||b.classList.contains("hidden"))?0:"" });
+}
+
+/* 進捗 */
+const TOT=Object.keys(N).length;
+function upd(){const d=Object.keys(store).length,p=Math.round(d/TOT*100);
+ document.getElementById("pct").textContent=p+"%";
+ document.getElementById("fill").style.width=p+"%";
+ document.getElementById("cnt").textContent=`${d} / ${TOT} 単元`}
+function resetAll(){store={};save();
+ document.querySelectorAll(".n.done").forEach(e=>e.classList.remove("done"));upd()}
+upd();
+
+/* ズーム */
+let sc=1,auto=true;
+function apply(){cv.style.transform=`scale(${sc})`;cv.style.height=(1330*sc)+"px"}
+function fitw(){const b=document.querySelector(".scroll").clientWidth-4;sc=Math.min(1,b/1444);apply()}
+function zoom(d){if(d===0){auto=true;fitw();return}
+ auto=false;sc=Math.max(.35,Math.min(1.8,sc+d*.15));apply()}
+window.addEventListener("resize",()=>{if(auto)fitw()});
+fitw();
+</script>
+</body>
+</html>

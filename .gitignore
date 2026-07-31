@@ -1,0 +1,12 @@
+.next/
+node_modules/
+out/
+.vercel/
+.DS_Store
+*.log
+*.tsbuildinfo
+
+# 教材コンテンツは非公開（公開リポジトリに含めない。HANDOFF.md 8-B節）
+# 新規クローン後は `npm run content:sync` で雛形と初期管理データを再生成する
+src/content/units/
+src/content/admin-data.json

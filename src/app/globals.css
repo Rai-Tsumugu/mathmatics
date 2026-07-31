@@ -1,0 +1,2193 @@
+:root {
+  --ink: #eaf0ff;
+  --muted: #98a4bd;
+  --faint: #68738a;
+  --background: #0b1020;
+  --surface: #121a2c;
+  --surface-strong: #182238;
+  --line: #25324a;
+  --calc: #55a5ff;
+  --lin: #f5b849;
+  --disc: #40d8c1;
+  --prob: #f080b6;
+  --bridge: #a995ff;
+  --green: #54d69d;
+  --max-width: 1240px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 80% -10%, rgba(85, 165, 255, 0.14), transparent 35rem),
+    var(--background);
+  font-family:
+    Inter, "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.siteHeader {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 0 max(24px, calc((100vw - var(--max-width)) / 2));
+  border-bottom: 1px solid rgba(37, 50, 74, 0.8);
+  background: rgba(11, 16, 32, 0.82);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandMark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--calc);
+  background: var(--surface);
+  font-family: Georgia, serif;
+  font-size: 21px;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand strong {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.brand small {
+  margin-top: 2px;
+  color: var(--faint);
+  font-size: 10px;
+}
+
+.siteHeader nav {
+  display: flex;
+  gap: 24px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.siteHeader nav a:hover {
+  color: var(--ink);
+}
+
+main {
+  width: min(calc(100% - 48px), var(--max-width));
+  margin: 0 auto;
+}
+
+.treePage {
+  width: 100%;
+  max-width: 1600px;
+  padding: 0 24px 24px;
+}
+
+.treeIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.55fr);
+  gap: 64px;
+  align-items: end;
+  padding: 48px 0 30px;
+}
+
+.treeIntro h1 {
+  margin: 0;
+  font-family: Georgia, "Yu Mincho", serif;
+  font-size: clamp(32px, 4vw, 54px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.treeIntro > div:first-child > p:last-child {
+  max-width: 720px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.treeProgressPanel {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(18, 26, 44, 0.74);
+}
+
+.treeProgressValue {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.treeProgressValue strong {
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.treeProgressValue span,
+.treeProgressPanel small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.treeProgressTrack,
+.treeNodeTrack {
+  overflow: hidden;
+  background: #0b1120;
+}
+
+.treeProgressTrack {
+  height: 7px;
+  margin: 14px 0 9px;
+  border-radius: 999px;
+}
+
+.treeProgressTrack i,
+.treeNodeTrack i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--calc), var(--bridge), var(--prob));
+  transition: width 180ms ease;
+}
+
+.treeToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 54px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px 12px 0 0;
+  background: rgba(18, 26, 44, 0.68);
+}
+
+.treeLegend,
+.treeActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.treeLegend > span {
+  --accent: var(--bridge);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.treeLegend i {
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.treeActions button {
+  min-width: 32px;
+  height: 30px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: var(--surface);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.treeActions button:hover {
+  border-color: var(--muted);
+  color: var(--ink);
+}
+
+.treeActions .treeReset {
+  margin-left: 5px;
+  color: #f0a3ae;
+}
+
+.treeViewport {
+  overflow-x: auto;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  border-radius: 0 0 12px 12px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    rgba(8, 13, 26, 0.62);
+  background-size: 32px 32px;
+}
+
+.treeCanvasSizer {
+  position: relative;
+  min-width: 100%;
+}
+
+.treeCanvas {
+  position: relative;
+  transform-origin: top left;
+}
+
+.treeBand {
+  position: absolute;
+  z-index: 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 17%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 3.5%, transparent);
+  pointer-events: none;
+}
+
+.treeBand span {
+  position: absolute;
+  top: -20px;
+  left: 12px;
+  color: color-mix(in srgb, var(--accent) 82%, var(--muted));
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.treeBandCalc {
+  --accent: var(--calc);
+  top: 146px;
+  left: 10px;
+  width: 594px;
+  height: 1084px;
+}
+
+.treeBandLin {
+  --accent: var(--lin);
+  top: 146px;
+  left: 616px;
+  width: 400px;
+  height: 1084px;
+}
+
+.treeBandDisc {
+  --accent: var(--disc);
+  top: 146px;
+  left: 1028px;
+  width: 404px;
+  height: 548px;
+}
+
+.treeBandProb {
+  --accent: var(--prob);
+  top: 682px;
+  left: 1028px;
+  width: 404px;
+  height: 548px;
+}
+
+.treeBandBridge {
+  --accent: var(--bridge);
+  top: 1218px;
+  left: 10px;
+  width: 1422px;
+  height: 280px;
+}
+
+.treeEdges {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.treeEdge {
+  fill: none;
+  stroke: #303a54;
+  stroke-width: 1.4;
+  transition: opacity 140ms ease, stroke 140ms ease, stroke-width 140ms ease;
+}
+
+.treeEdgeCross {
+  stroke: #4c416e;
+  stroke-dasharray: 5 4;
+}
+
+.treeEdgeDim {
+  opacity: 0.1;
+}
+
+.treeEdgeActive {
+  stroke: #8bd8ff;
+  stroke-width: 2.6;
+  filter: drop-shadow(0 0 4px rgba(139, 216, 255, 0.55));
+}
+
+.treeEdges circle {
+  fill: #46516e;
+}
+
+.treeEdges .treeEdgePointActive {
+  fill: #8bd8ff;
+}
+
+.treeNode {
+  --accent: var(--bridge);
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: 9px;
+  background: rgba(18, 26, 44, 0.96);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.treeNode:hover,
+.treeNode:focus-within {
+  z-index: 4;
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 65%, var(--line));
+  background: var(--surface-strong);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
+}
+
+.treeNodeDim {
+  opacity: 0.2;
+}
+
+.treeNodeDone {
+  border-top-color: var(--green);
+}
+
+.treeNodeHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 7px;
+  align-items: start;
+}
+
+.treeNodeHeading a {
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.treeNodeHeading a:hover {
+  color: var(--accent);
+}
+
+.treeNodeHeading > span {
+  color: var(--accent);
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+}
+
+.treeNode > p {
+  display: -webkit-box;
+  overflow: hidden;
+  min-height: 27px;
+  margin: 4px 0 6px;
+  color: var(--faint);
+  font-size: 9.5px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.treeNodeFooter {
+  margin-top: auto;
+}
+
+.treeNodeProgress {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.treeNodeProgress button {
+  height: 22px;
+  padding: 0;
+  border: 1px solid #34415d;
+  border-radius: 5px;
+  color: var(--faint);
+  background: #0c1323;
+  font: inherit;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.treeNodeProgress button:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.treeNodeProgress button.isComplete {
+  border-color: color-mix(in srgb, var(--green) 62%, var(--line));
+  color: #081a13;
+  background: var(--green);
+}
+
+.treeNodeTrack {
+  height: 2px;
+  margin-top: 5px;
+  border-radius: 999px;
+}
+
+.treeNodeTrack i {
+  background: var(--accent);
+}
+
+.treeNodeDone .treeNodeTrack i {
+  background: var(--green);
+}
+
+.treeHelp {
+  margin: 12px 4px 0;
+  color: var(--faint);
+  font-size: 10.5px;
+  line-height: 1.7;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(360px, 0.7fr);
+  gap: 64px;
+  align-items: end;
+  padding: 110px 0 72px;
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--calc);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.hero h1,
+.unitHero h1,
+.notFound h1 {
+  max-width: 820px;
+  margin: 0;
+  font-family: Georgia, "Yu Mincho", serif;
+  font-size: clamp(42px, 6vw, 76px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+.heroLead {
+  max-width: 680px;
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 2;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.stats div {
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+}
+
+.stats div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.stats dt {
+  color: var(--faint);
+  font-size: 11px;
+}
+
+.stats dd {
+  margin: 8px 0 0;
+  font-family: Georgia, serif;
+  font-size: 38px;
+}
+
+.contentTypes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 110px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.contentTypes > div {
+  min-height: 150px;
+  padding: 24px;
+  border-left: 1px solid var(--line);
+  background: rgba(18, 26, 44, 0.55);
+}
+
+.contentTypes > div:first-child {
+  border-left: 0;
+}
+
+.contentTypes span,
+.moduleGrid .moduleCard span {
+  color: var(--faint);
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+
+.contentTypes strong,
+.contentTypes small {
+  display: block;
+}
+
+.contentTypes strong {
+  margin-top: 32px;
+  font-size: 15px;
+}
+
+.contentTypes small {
+  margin-top: 6px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.categorySection {
+  margin-bottom: 110px;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sectionHeading > div {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.sectionHeading p,
+.sectionHeading h2 {
+  margin: 0;
+}
+
+.sectionHeading p {
+  color: var(--faint);
+  font-family: Georgia, serif;
+}
+
+.sectionHeading h2 {
+  font-family: Georgia, "Yu Mincho", serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.sectionHeading > span {
+  color: var(--faint);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.unitGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.unitCard {
+  --accent: var(--bridge);
+  min-height: 188px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(24, 34, 56, 0.84), rgba(18, 26, 44, 0.64));
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.unitCard:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+}
+
+.category-calc {
+  --accent: var(--calc);
+}
+
+.category-lin {
+  --accent: var(--lin);
+}
+
+.category-disc {
+  --accent: var(--disc);
+}
+
+.category-prob {
+  --accent: var(--prob);
+}
+
+.category-bridge {
+  --accent: var(--bridge);
+}
+
+.unitCardTopline,
+.unitMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.unitId {
+  color: var(--accent);
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badges {
+  display: flex;
+  gap: 5px;
+}
+
+.badge {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.badgeMl {
+  color: var(--green);
+}
+
+.unitCard h3 {
+  margin: 26px 0 8px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.unitCard h3 a::after {
+  content: " ↗";
+  color: var(--faint);
+  font-weight: 400;
+}
+
+.unitCard p {
+  min-height: 43px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.unitMeta {
+  margin-top: 18px;
+  color: var(--faint);
+  font-size: 10px;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 36px;
+  color: var(--faint);
+  font-size: 11px;
+}
+
+.breadcrumb a:hover {
+  color: var(--ink);
+}
+
+.unitHero {
+  --accent: var(--bridge);
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.55fr);
+  gap: 56px;
+  align-items: end;
+  padding: 88px 0 72px;
+  border-bottom: 1px solid var(--line);
+}
+
+.unitHero .eyebrow {
+  color: var(--accent);
+}
+
+.unitHero h1 {
+  font-size: clamp(40px, 5vw, 64px);
+}
+
+.unitHero > div > p:last-child {
+  max-width: 720px;
+  margin: 24px 0 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.unitHero dl {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.unitHero dl div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.unitHero dt {
+  color: var(--faint);
+  font-size: 11px;
+}
+
+.unitHero dd {
+  margin: 0;
+  font-size: 12px;
+}
+
+.learningModules,
+.whySection,
+.topicsSection,
+.unitDoc {
+  padding: 76px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.learningModules > h2,
+.whySection h2,
+.topicsSection h2,
+.relationshipBlock h2,
+.unitDocHead h2 {
+  margin: 0;
+  font-family: Georgia, "Yu Mincho", serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.learningModules > p {
+  margin: 12px 0 32px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.moduleGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.moduleGrid .moduleCard {
+  min-height: 220px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.moduleGrid .moduleCardBody,
+.moduleGrid .moduleCardLink {
+  display: block;
+  height: 100%;
+  padding: 24px;
+}
+
+.moduleGrid .moduleCardLink {
+  color: inherit;
+  transition: background 0.15s ease;
+}
+
+.moduleGrid .moduleCardAvailable:hover {
+  border-color: var(--muted);
+}
+
+.moduleGrid .moduleCardLink:hover {
+  background: var(--surface-strong);
+}
+
+.moduleGrid h3 {
+  margin: 48px 0 10px;
+  font-size: 15px;
+}
+
+.moduleGrid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.moduleGrid small {
+  display: block;
+  margin-top: 28px;
+  color: var(--faint);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.moduleGrid .moduleCardAvailable small {
+  color: var(--green);
+}
+
+.unitDocHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 16px;
+}
+
+.docStatus {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.unitDocBody {
+  max-width: 820px;
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.unitDocBody h2,
+.unitDocBody h3,
+.unitDocBody h4 {
+  margin: 40px 0 14px;
+  color: var(--ink);
+  font-family: Georgia, "Yu Mincho", serif;
+  font-weight: 500;
+}
+
+.unitDocBody h2 {
+  font-size: 22px;
+}
+
+.unitDocBody h3 {
+  font-size: 18px;
+}
+
+.unitDocBody h4 {
+  font-size: 15px;
+}
+
+.unitDocBody p {
+  margin: 0 0 18px;
+}
+
+.unitDocBody ul,
+.unitDocBody ol {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+
+.unitDocBody li {
+  margin: 6px 0;
+}
+
+.unitDocBody blockquote {
+  margin: 0 0 18px;
+  padding: 10px 16px;
+  border-left: 3px solid var(--lin);
+  background: rgba(245, 184, 73, 0.06);
+  color: var(--ink);
+}
+
+.unitDocBody blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.unitDocBody code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--surface-strong);
+  color: var(--ink);
+  font-size: 0.9em;
+}
+
+.unitDocBody pre {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  overflow-x: auto;
+}
+
+.unitDocBody pre code {
+  padding: 0;
+  background: none;
+}
+
+.unitDocBody table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 0 18px;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.unitDocBody th,
+.unitDocBody td {
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+
+.unitDocBody details {
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.unitDocBody details summary {
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.unitDocBody .katex {
+  color: inherit;
+}
+
+.unitDocBody .katex-display {
+  margin: 18px 0;
+  padding: 4px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.solutionsToggle {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.solutionsToggle > summary {
+  padding: 20px 24px;
+  color: var(--ink);
+  font-family: Georgia, "Yu Mincho", serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.solutionsToggle[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.solutionsToggle .unitDocHead {
+  padding: 24px 24px 0;
+}
+
+.solutionsToggle .unitDocBody {
+  padding: 0 24px 24px;
+}
+
+.whySection {
+  max-width: 820px;
+}
+
+.whySection > p:last-child {
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 2;
+}
+
+.topicsSection ol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 36px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: topic;
+}
+
+.topicsSection li {
+  counter-increment: topic;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.topicsSection li::before {
+  content: counter(topic, decimal-leading-zero);
+  display: inline-block;
+  width: 40px;
+  color: var(--faint);
+  font-family: Georgia, serif;
+}
+
+.relationships {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  padding: 76px 0 110px;
+}
+
+.relationshipBlock h2 {
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+.relationshipList {
+  border-top: 1px solid var(--line);
+}
+
+.relationshipList a {
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.relationshipList a:hover strong {
+  color: var(--accent);
+}
+
+.relationDot {
+  --accent: var(--bridge);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.relationshipList strong,
+.relationshipList small {
+  display: block;
+}
+
+.relationshipList strong {
+  font-size: 13px;
+}
+
+.relationshipList small {
+  margin-top: 3px;
+  color: var(--faint);
+  font-size: 10px;
+}
+
+.relationshipList > a > span:last-child {
+  color: var(--faint);
+}
+
+.emptyState {
+  padding: 24px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  color: var(--faint);
+  font-size: 12px;
+}
+
+.notFound {
+  min-height: 70vh;
+  padding-top: 120px;
+}
+
+.notFound p:not(.eyebrow) {
+  margin: 24px 0;
+  color: var(--muted);
+}
+
+.primaryLink {
+  display: inline-flex;
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: #08101e;
+  background: var(--calc);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.siteFooter {
+  width: min(calc(100% - 48px), var(--max-width));
+  margin: 0 auto;
+  padding: 30px 0 50px;
+  border-top: 1px solid var(--line);
+  color: var(--faint);
+  font-size: 11px;
+}
+
+.adminPage {
+  width: min(calc(100% - 48px), 1460px);
+  padding: 42px 0 72px;
+}
+
+.adminHero,
+.adminViewHeading,
+.adminEditorHeading,
+.adminPanelHeading,
+.adminReviewHeading,
+.adminReviewActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.adminHero {
+  align-items: end;
+  padding: 0 0 30px;
+}
+
+.adminHero h1,
+.adminViewHeading h2,
+.adminEditorHeading h3,
+.adminPanel h3,
+.adminReviewList h3,
+.adminReviewList h4 {
+  margin: 0;
+}
+
+.adminHero h1 {
+  font-family: Georgia, "Yu Mincho", serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.adminHero > div:first-child > p:last-child {
+  max-width: 660px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.adminSaveArea {
+  display: grid;
+  min-width: 220px;
+  justify-items: end;
+  gap: 8px;
+}
+
+.adminSaveArea > span {
+  padding: 5px 8px;
+  border: 1px solid;
+  border-radius: 999px;
+  font: 700 9px/1 monospace;
+  letter-spacing: 0.09em;
+}
+
+.adminModeLocal {
+  border-color: rgba(84, 214, 157, 0.35) !important;
+  color: var(--green);
+  background: rgba(84, 214, 157, 0.08);
+}
+
+.adminModeReadOnly {
+  border-color: rgba(240, 128, 182, 0.35) !important;
+  color: var(--prob);
+  background: rgba(240, 128, 182, 0.08);
+}
+
+.adminSaveArea p {
+  margin: 0;
+  color: var(--green);
+  font-size: 11px;
+}
+
+.adminPrimaryButton,
+.adminSecondaryButton,
+.adminDangerButton {
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--ink);
+  background: var(--surface-strong);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adminPrimaryButton {
+  border-color: rgba(85, 165, 255, 0.55);
+  background: #226bbd;
+}
+
+.adminDangerButton {
+  border-color: rgba(240, 128, 182, 0.3);
+  color: #ffacd3;
+  background: rgba(240, 128, 182, 0.07);
+}
+
+.adminPrimaryButton:hover:not(:disabled),
+.adminSecondaryButton:hover,
+.adminDangerButton:hover {
+  filter: brightness(1.12);
+}
+
+.adminPrimaryButton:disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+
+.adminLayout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  min-height: 720px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(18, 26, 44, 0.72);
+}
+
+.adminSidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 16px;
+  border-right: 1px solid var(--line);
+  background: rgba(11, 16, 32, 0.6);
+}
+
+.adminSidebar > p {
+  margin: 0 10px 12px;
+  color: var(--faint);
+  font: 700 9px/1 monospace;
+  letter-spacing: 0.12em;
+}
+
+.adminSidebar nav {
+  display: grid;
+  gap: 5px;
+}
+
+.adminSidebar nav button {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--muted);
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+
+.adminSidebar nav button strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.adminSidebar nav button small {
+  color: var(--faint);
+  font-size: 10px;
+}
+
+.adminSidebar nav button:hover,
+.adminSidebar nav button.isActive {
+  border-color: var(--line);
+  background: var(--surface-strong);
+}
+
+.adminSidebar nav button.isActive {
+  box-shadow: inset 3px 0 var(--calc);
+}
+
+.adminSidebarNote {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+  padding: 14px 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.adminSidebarNote strong {
+  font-size: 10px;
+}
+
+.adminSidebarNote code {
+  overflow: hidden;
+  color: var(--calc);
+  font-size: 9px;
+  text-overflow: ellipsis;
+}
+
+.adminSidebarNote p {
+  margin: 0;
+  color: var(--faint);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.adminWorkspace {
+  min-width: 0;
+  padding: 28px;
+}
+
+.adminViewHeading {
+  min-height: 54px;
+  margin-bottom: 22px;
+}
+
+.adminViewHeading h2 {
+  font-size: 24px;
+}
+
+.adminViewHeading > span {
+  color: var(--faint);
+  font-size: 11px;
+}
+
+.adminKpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.adminKpiGrid article,
+.adminPanel,
+.adminEditor,
+.adminReviewList article {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: rgba(11, 16, 32, 0.5);
+}
+
+.adminKpiGrid article {
+  padding: 18px;
+}
+
+.adminKpiGrid small,
+.adminKpiGrid p {
+  color: var(--faint);
+  font-size: 10px;
+}
+
+.adminKpiGrid strong {
+  display: block;
+  margin: 8px 0 10px;
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.adminKpiGrid strong span {
+  color: var(--faint);
+  font-size: 13px;
+}
+
+.adminKpiGrid p {
+  margin: 0;
+}
+
+.adminOverviewGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.adminPanel {
+  padding: 20px;
+}
+
+.adminPanelHeading {
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.adminPanelHeading h3 {
+  font-size: 14px;
+}
+
+.adminPanelHeading span {
+  color: var(--faint);
+  font-size: 9px;
+}
+
+.adminCategoryProgress,
+.adminDifficultyChart {
+  display: grid;
+  gap: 14px;
+}
+
+.adminCategoryProgress > div > div,
+.adminDifficultyChart > div {
+  display: grid;
+  align-items: center;
+}
+
+.adminCategoryProgress > div > div {
+  grid-template-columns: 1fr auto;
+  margin-bottom: 6px;
+}
+
+.adminCategoryProgress strong,
+.adminCategoryProgress span,
+.adminDifficultyChart span,
+.adminDifficultyChart strong {
+  font-size: 10px;
+}
+
+.adminCategoryProgress span,
+.adminDifficultyChart span {
+  color: var(--muted);
+}
+
+.adminCategoryProgress i,
+.adminDifficultyChart i {
+  display: block;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #090e1b;
+}
+
+.adminCategoryProgress i b,
+.adminDifficultyChart i b {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.adminCategoryProgress .category-calculus {
+  background: var(--calc);
+}
+
+.adminCategoryProgress .category-linear-algebra {
+  background: var(--lin);
+}
+
+.adminCategoryProgress .category-discrete-foundations {
+  background: var(--disc);
+}
+
+.adminCategoryProgress .category-probability-statistics {
+  background: var(--prob);
+}
+
+.adminCategoryProgress .category-applications {
+  background: var(--bridge);
+}
+
+.adminDifficultyChart > div {
+  grid-template-columns: 32px 1fr 20px;
+  gap: 8px;
+}
+
+.adminDifficultyChart i b {
+  background: linear-gradient(90deg, var(--calc), var(--bridge));
+}
+
+.adminAttentionList {
+  display: grid;
+}
+
+.adminAttentionList > div {
+  display: grid;
+  grid-template-columns: auto minmax(120px, 0.35fr) 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.adminAttentionList > div:first-child {
+  border-top: 0;
+}
+
+.adminAttentionList strong,
+.adminAttentionList p {
+  font-size: 11px;
+}
+
+.adminAttentionList p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.adminStatus {
+  display: inline-flex;
+  width: max-content;
+  padding: 4px 7px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.adminStatusHold {
+  color: var(--lin);
+  background: rgba(245, 184, 73, 0.12);
+}
+
+.adminStatusReview {
+  color: var(--calc);
+  background: rgba(85, 165, 255, 0.12);
+}
+
+.adminEmpty {
+  color: var(--faint);
+  font-size: 11px;
+}
+
+.adminFilters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.adminFilters label {
+  width: min(260px, 100%);
+}
+
+.adminFilters label,
+.adminEditor label,
+.adminReviewList label {
+  display: grid;
+  gap: 6px;
+}
+
+.adminFilters label > span,
+.adminEditor label > span,
+.adminReviewList label > span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.adminFilters input,
+.adminFilters select,
+.adminEditor input,
+.adminEditor select,
+.adminEditor textarea,
+.adminReviewList input {
+  width: 100%;
+  min-height: 39px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  color: var(--ink);
+  background: #0b1120;
+  font: inherit;
+  font-size: 12px;
+}
+
+.adminEditor textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+.adminFilters input:focus,
+.adminFilters select:focus,
+.adminEditor input:focus,
+.adminEditor select:focus,
+.adminEditor textarea:focus,
+.adminReviewList input:focus {
+  border-color: var(--calc);
+  box-shadow: 0 0 0 3px rgba(85, 165, 255, 0.09);
+}
+
+.adminEditor input[readonly] {
+  color: var(--faint);
+  cursor: not-allowed;
+}
+
+.adminEditor label > small {
+  color: var(--faint);
+  font-size: 9px;
+}
+
+.adminSplit {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.adminUnitList,
+.adminProblemList {
+  display: grid;
+  max-height: 680px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(11, 16, 32, 0.46);
+}
+
+.adminUnitList button,
+.adminProblemList button {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  padding: 12px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+
+.adminUnitList button:last-child,
+.adminProblemList button:last-child {
+  border-bottom: 0;
+}
+
+.adminUnitList button:hover,
+.adminProblemList button:hover,
+.adminUnitList button.isSelected,
+.adminProblemList button.isSelected {
+  background: var(--surface-strong);
+}
+
+.adminUnitList button.isSelected,
+.adminProblemList button.isSelected {
+  box-shadow: inset 3px 0 var(--calc);
+}
+
+.adminUnitList i {
+  width: 7px;
+  height: 32px;
+  border-radius: 999px;
+}
+
+.adminUnitList .category-calculus {
+  background: var(--calc);
+}
+
+.adminUnitList .category-linear-algebra {
+  background: var(--lin);
+}
+
+.adminUnitList .category-discrete-foundations {
+  background: var(--disc);
+}
+
+.adminUnitList .category-probability-statistics {
+  background: var(--prob);
+}
+
+.adminUnitList .category-applications {
+  background: var(--bridge);
+}
+
+.adminUnitList button > span:not(.adminDifficulty),
+.adminProblemList button > span:not(.adminDifficulty) {
+  min-width: 0;
+}
+
+.adminUnitList strong,
+.adminUnitList small,
+.adminProblemList strong,
+.adminProblemList small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminUnitList strong,
+.adminProblemList strong {
+  font-size: 11px;
+}
+
+.adminUnitList small,
+.adminProblemList small {
+  margin-top: 4px;
+  color: var(--faint);
+  font-size: 9px;
+}
+
+.adminUnitList b,
+.adminProblemList em {
+  color: var(--muted);
+  font-size: 9px;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.adminDifficulty {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 9px;
+  color: var(--calc);
+  background: rgba(85, 165, 255, 0.1);
+  font: 700 9px/1 monospace;
+}
+
+.adminDifficulty4,
+.adminDifficulty5 {
+  color: var(--prob);
+  background: rgba(240, 128, 182, 0.1);
+}
+
+.adminEditor {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+  padding: 22px;
+}
+
+.adminEditorHeading {
+  align-items: start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.adminEditorHeading span {
+  color: var(--calc);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.adminEditorHeading h3 {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.adminEditorHeading p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.adminEditorHeading > strong {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.adminFieldGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.adminFieldGridFour {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.adminFullField {
+  width: 100%;
+}
+
+.adminReviewFlow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.adminReviewFlow > div {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border-left: 1px solid var(--line);
+}
+
+.adminReviewFlow > div:first-child {
+  border-left: 0;
+}
+
+.adminReviewFlow span,
+.adminReviewFlow small {
+  color: var(--faint);
+  font: 9px/1.2 monospace;
+}
+
+.adminReviewFlow strong {
+  font-size: 11px;
+}
+
+.adminReviewList {
+  display: grid;
+  gap: 14px;
+}
+
+.adminReviewList article {
+  padding: 20px;
+}
+
+.adminReviewHeading {
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.adminReviewHeading h3 {
+  margin-top: 8px;
+  font-size: 17px;
+}
+
+.adminReviewHeading p,
+.adminReviewContent p {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.adminReviewHeading p {
+  margin: 5px 0 0;
+}
+
+.adminReviewHeading > strong {
+  color: var(--faint);
+  font: 10px/1 monospace;
+}
+
+.adminReviewContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.adminReviewContent section {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+
+.adminReviewContent h4 {
+  font-size: 10px;
+}
+
+.adminReviewContent p {
+  margin: 8px 0 0;
+  white-space: pre-wrap;
+}
+
+.adminReviewActions {
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.adminEmptyPanel {
+  padding: 48px 20px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .adminKpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .adminFieldGridFour {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .adminPage {
+    width: min(calc(100% - 32px), var(--max-width));
+  }
+
+  .adminHero {
+    align-items: start;
+  }
+
+  .adminLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .adminSidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .adminSidebar > p,
+  .adminSidebarNote {
+    display: none;
+  }
+
+  .adminSidebar nav {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .adminOverviewGrid,
+  .adminSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .adminUnitList,
+  .adminProblemList {
+    max-height: 280px;
+  }
+
+  .adminFieldGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .adminReviewContent {
+    grid-template-columns: 1fr;
+  }
+
+  .treeIntro {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .treeToolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hero,
+  .unitHero {
+    grid-template-columns: 1fr;
+  }
+
+  .unitGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contentTypes,
+  .moduleGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contentTypes > div:nth-child(3) {
+    border-left: 0;
+  }
+
+  .relationships {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 620px) {
+  .adminPage {
+    width: 100%;
+    padding: 28px 12px 48px;
+  }
+
+  .adminHero {
+    display: grid;
+  }
+
+  .adminSaveArea {
+    width: 100%;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    justify-items: start;
+  }
+
+  .adminSaveArea p {
+    grid-column: 1 / -1;
+  }
+
+  .adminSidebar {
+    overflow-x: auto;
+    padding: 10px;
+  }
+
+  .adminSidebar nav {
+    min-width: 500px;
+  }
+
+  .adminSidebar nav button small {
+    display: none;
+  }
+
+  .adminWorkspace {
+    padding: 18px 12px;
+  }
+
+  .adminViewHeading {
+    align-items: end;
+  }
+
+  .adminKpiGrid,
+  .adminFieldGrid,
+  .adminFieldGridFour,
+  .adminReviewFlow {
+    grid-template-columns: 1fr;
+  }
+
+  .adminReviewFlow > div {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .adminReviewFlow > div:first-child {
+    border-top: 0;
+  }
+
+  .adminFilters {
+    display: grid;
+  }
+
+  .adminFilters label {
+    width: 100%;
+  }
+
+  .adminAttentionList > div {
+    grid-template-columns: auto 1fr;
+  }
+
+  .adminAttentionList p {
+    grid-column: 1 / -1;
+  }
+
+  .adminEditor {
+    padding: 16px;
+  }
+
+  .siteHeader {
+    padding: 0 18px;
+  }
+
+  .siteHeader nav a:last-child,
+  .brand small {
+    display: none;
+  }
+
+  .siteHeader nav {
+    gap: 14px;
+  }
+
+  main,
+  .siteFooter {
+    width: min(calc(100% - 32px), var(--max-width));
+  }
+
+  .treePage {
+    width: 100%;
+    padding: 0 12px 20px;
+  }
+
+  .treeIntro {
+    padding-top: 34px;
+  }
+
+  .treeIntro h1 {
+    font-size: 34px;
+  }
+
+  .treeLegend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .treeActions {
+    width: 100%;
+  }
+
+  .treeActions .treeReset {
+    margin-left: auto;
+  }
+
+  .hero {
+    padding-top: 72px;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .unitGrid,
+  .contentTypes,
+  .moduleGrid,
+  .topicsSection ol,
+  .relationships {
+    grid-template-columns: 1fr;
+  }
+
+  .contentTypes > div {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .contentTypes > div:first-child {
+    border-top: 0;
+  }
+
+  .sectionHeading {
+    align-items: start;
+  }
+
+  .sectionHeading > div {
+    display: block;
+  }
+
+  .sectionHeading p {
+    margin-bottom: 6px;
+  }
+}

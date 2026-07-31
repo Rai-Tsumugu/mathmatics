@@ -1,0 +1,2711 @@
+{
+  "generatedFrom": "tree-map/math-treemap-full.html",
+  "generatedAt": "2026-07-30T23:57:06.757Z",
+  "categories": [
+    {
+      "id": "calc",
+      "slug": "calculus",
+      "label": "微分積分系",
+      "order": 1
+    },
+    {
+      "id": "lin",
+      "slug": "linear-algebra",
+      "label": "線形代数系",
+      "order": 2
+    },
+    {
+      "id": "disc",
+      "slug": "discrete-foundations",
+      "label": "離散・基礎",
+      "order": 3
+    },
+    {
+      "id": "prob",
+      "slug": "probability-statistics",
+      "label": "確率・統計",
+      "order": 4
+    },
+    {
+      "id": "bridge",
+      "slug": "applications",
+      "label": "応用・合流",
+      "order": 5
+    }
+  ],
+  "units": [
+    {
+      "id": "root_hs",
+      "title": "高校数学の橋渡し",
+      "summary": "三角/指数/対数・数列・Σ記法・極限の直観",
+      "category": "bridge",
+      "categorySlug": "applications",
+      "categoryLabel": "応用・合流",
+      "categoryOrder": 5,
+      "row": 0,
+      "column": null,
+      "layoutX": 187,
+      "layoutWidth": 240,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "最初の2〜3週間",
+      "rationale": "大学の講義は高校範囲を既知として全速力で進む。ここの穴は必ず後で表面化する。",
+      "topics": [
+        "三角関数の加法定理と微分公式",
+        "指数・対数の性質、自然対数 e の定義",
+        "数列と Σ 記法、等比級数の和",
+        "高校範囲の微分積分の計算練習",
+        "ベクトルの内積と成分表示"
+      ],
+      "tip": "到達目安：∫x·e^x dx、sin x の n 次導関数、Σ(1/2)^n が手を止めずに書けること。",
+      "machineLearningUse": "",
+      "prerequisites": [],
+      "nextUnits": [
+        "lim",
+        "mat"
+      ]
+    },
+    {
+      "id": "root_log",
+      "title": "数学の言葉（論理・集合・写像）",
+      "summary": "命題論理・量化子・集合演算・写像・全単射",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 0,
+      "column": null,
+      "layoutX": 1108,
+      "layoutWidth": 240,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "最初の2週間",
+      "rationale": "「∀ε∃δ」を読む、定理の仮定と結論を切り分ける、反例を作る——全ての数学の読み書きの基礎。ここを飛ばすと ε-δ で必ず躓く。",
+      "topics": [
+        "命題・論理結合子・真理値表",
+        "全称記号 ∀ と存在記号 ∃、量化子の順序",
+        "否定の作り方（ド・モルガン）",
+        "集合演算・べき集合・直積",
+        "写像、単射・全射・全単射、逆写像",
+        "同値関係と商集合"
+      ],
+      "tip": "「∀x∃y P(x,y)」と「∃y∀x P(x,y)」の違いを例で説明できれば合格。",
+      "machineLearningUse": "",
+      "prerequisites": [],
+      "nextUnits": [
+        "comb",
+        "logic",
+        "lim",
+        "vs",
+        "prob"
+      ]
+    },
+    {
+      "id": "lim",
+      "title": "極限と連続性",
+      "summary": "ε-δ論法・上限公理・中間値の定理",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 1,
+      "column": "A",
+      "layoutX": 20,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年前期 微積I",
+      "rationale": "「収束する」を定義できないと以降の定理の主張が読めない。理系学部で最初の関門。",
+      "topics": [
+        "数列の収束と単調収束定理",
+        "実数の連続性（上限公理）",
+        "関数の極限と ε-δ 論法",
+        "中間値の定理・最大値の定理",
+        "一様連続性"
+      ],
+      "tip": "ε-δ はまず「書ける」より「読める」を目標に。∀ε ∃δ の順序が全て。",
+      "machineLearningUse": "",
+      "prerequisites": [
+        "root_hs",
+        "root_log"
+      ],
+      "nextUnits": [
+        "dif"
+      ]
+    },
+    {
+      "id": "dif",
+      "title": "微分法",
+      "summary": "導関数・連鎖律・平均値の定理・ロピタル",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 2,
+      "column": "A",
+      "layoutX": 20,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年前期 微積I",
+      "rationale": "連鎖律がここで初めて厳密に登場する。誤差逆伝播はこれの多変数版にすぎない。",
+      "topics": [
+        "微分可能性と連続性の関係",
+        "合成関数の微分（連鎖律）",
+        "逆関数の微分",
+        "平均値の定理・ロルの定理",
+        "ロピタルの定理",
+        "高階導関数、ライプニッツ則"
+      ],
+      "tip": "",
+      "machineLearningUse": "",
+      "prerequisites": [
+        "lim"
+      ],
+      "nextUnits": [
+        "tay",
+        "int",
+        "pd",
+        "ode"
+      ]
+    },
+    {
+      "id": "tay",
+      "title": "テイラー展開",
+      "summary": "マクローリン展開・剰余項・多項式近似",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 3,
+      "column": "A",
+      "layoutX": 20,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "1年前期 微積I",
+      "rationale": "「難しい関数を多項式で置き換える」という数値計算・最適化の中心発想。2次近似がニュートン法。",
+      "topics": [
+        "テイラーの定理と剰余項（ラグランジュ形）",
+        "主要関数の展開：e^x, sin x, log(1+x), (1+x)^α",
+        "漸近展開と極限計算",
+        "極値判定への応用"
+      ],
+      "tip": "",
+      "machineLearningUse": "損失関数の2次近似 → ニュートン法・自然勾配法。活性化関数の近似解析。",
+      "prerequisites": [
+        "dif"
+      ],
+      "nextUnits": [
+        "ser",
+        "opt",
+        "cplx"
+      ]
+    },
+    {
+      "id": "int",
+      "title": "リーマン積分と基本定理",
+      "summary": "区分求積・可積分性・置換/部分積分",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 3,
+      "column": "B",
+      "layoutX": 214,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年後期 微積I",
+      "rationale": "「積分＝微分の逆」は定理であって定義ではない。この区別が理解の分かれ目。",
+      "topics": [
+        "リーマン和と可積分条件",
+        "微積分学の基本定理（第一・第二）",
+        "置換積分・部分積分",
+        "有理関数の部分分数分解",
+        "三角・無理関数の積分技法"
+      ],
+      "tip": "",
+      "machineLearningUse": "",
+      "prerequisites": [
+        "dif"
+      ],
+      "nextUnits": [
+        "imp",
+        "ser",
+        "mint",
+        "meas"
+      ]
+    },
+    {
+      "id": "pd",
+      "title": "偏微分と勾配 ∇f",
+      "summary": "偏微分・全微分可能性・方向微分・接平面",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 4,
+      "column": "A",
+      "layoutX": 20,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年前期 微積II",
+      "rationale": "勾配降下法の「勾配」。∇f が最急増加方向を指す理由は内積の視点で理解する。",
+      "topics": [
+        "偏導関数と全微分可能性の違い",
+        "勾配 ∇f と方向微分",
+        "接平面・線形近似",
+        "C¹級関数とシュワルツの定理"
+      ],
+      "tip": "",
+      "machineLearningUse": "θ ← θ − η∇L(θ)。全ての学習アルゴリズムの心臓部。",
+      "prerequisites": [
+        "dif"
+      ],
+      "nextUnits": [
+        "chain",
+        "mint",
+        "vec",
+        "pde"
+      ]
+    },
+    {
+      "id": "imp",
+      "title": "広義積分と特殊関数",
+      "summary": "無限区間・収束判定・Γ関数・ガウス積分",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 4,
+      "column": "B",
+      "layoutX": 214,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "1年後期 微積I",
+      "rationale": "確率密度の積分はすべて広義積分。∫f(x)dx = 1 が定義できる根拠。",
+      "topics": [
+        "無限区間の積分と収束判定",
+        "特異点をもつ積分、比較判定法",
+        "ガンマ関数 Γ(s)、ベータ関数 B(p,q)",
+        "ガウス積分 ∫e^(−x²)dx = √π"
+      ],
+      "tip": "",
+      "machineLearningUse": "正規分布の正規化定数、ガンマ分布・ベータ分布。ベイズの共役事前分布の基礎。",
+      "prerequisites": [
+        "int"
+      ],
+      "nextUnits": [
+        "fourier",
+        "rv"
+      ]
+    },
+    {
+      "id": "ser",
+      "title": "級数と一様収束",
+      "summary": "収束判定・絶対収束・べき級数・収束半径",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 4,
+      "column": "C",
+      "layoutX": 408,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年後期 微積I",
+      "rationale": "テイラー展開が「いつ・どこまで」正しいかを保証する理論。一様収束は項別微分の許可証。",
+      "topics": [
+        "正項級数の収束判定（比・根・積分）",
+        "絶対収束と条件収束、リーマンの再配列定理",
+        "各点収束と一様収束",
+        "べき級数と収束半径",
+        "項別微分・項別積分"
+      ],
+      "tip": "",
+      "machineLearningUse": "",
+      "prerequisites": [
+        "int",
+        "tay"
+      ],
+      "nextUnits": [
+        "cplx",
+        "fourier",
+        "ode",
+        "meas",
+        "lln"
+      ]
+    },
+    {
+      "id": "chain",
+      "title": "連鎖律とヤコビ行列",
+      "summary": "多変数連鎖律・ヤコビ行列 J・ヘッセ行列 H",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 5,
+      "column": "A",
+      "layoutX": 20,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年前期 微積II",
+      "rationale": "誤差逆伝播法＝ヤコビ行列の連鎖積。深層学習の理論的中身はほぼこれ。",
+      "topics": [
+        "多変数連鎖律の行列表現",
+        "ヤコビ行列 J = (∂fᵢ/∂xⱼ)",
+        "ヘッセ行列 H = (∂²f/∂xᵢ∂xⱼ)",
+        "ベクトル値関数の微分",
+        "陰関数定理・逆関数定理"
+      ],
+      "tip": "",
+      "machineLearningUse": "Backpropagation は ∂L/∂θ = J₁ᵀJ₂ᵀ…∇L の計算。autograd の実体。",
+      "prerequisites": [
+        "pd",
+        "mat"
+      ],
+      "nextUnits": [
+        "opt",
+        "mdiff"
+      ]
+    },
+    {
+      "id": "mint",
+      "title": "重積分と変数変換",
+      "summary": "累次積分・フビニの定理・ヤコビアン",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 5,
+      "column": "B",
+      "layoutX": 214,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年後期 微積II",
+      "rationale": "確率変数の変換公式そのもの。ヤコビ行列式が「体積の伸縮率」として効く。",
+      "topics": [
+        "累次積分とフビニの定理",
+        "積分順序の交換",
+        "極座標・円柱座標・球座標変換",
+        "変数変換公式 dxdy = |J| dudv",
+        "ガウス積分の極座標による計算"
+      ],
+      "tip": "",
+      "machineLearningUse": "p_Y(y)=p_X(x)|det J|⁻¹ → VAE の再パラメータ化、Normalizing Flow。",
+      "prerequisites": [
+        "int",
+        "pd",
+        "det"
+      ],
+      "nextUnits": [
+        "vec",
+        "mc",
+        "mvn"
+      ]
+    },
+    {
+      "id": "ode",
+      "title": "常微分方程式",
+      "summary": "変数分離・線形ODE・定数係数系・解の存在一意性",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 5,
+      "column": "C",
+      "layoutX": 408,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "1〜2年 必修（理工系）",
+      "rationale": "物理・化学・生物・制御・経済のモデルはほぼ全て微分方程式。線形ODEの解法は固有値問題そのもの。",
+      "topics": [
+        "変数分離形・完全形・積分因子",
+        "定数係数線形微分方程式と特性方程式",
+        "連立線形ODE ⟺ 行列の指数関数 e^(At)",
+        "解の存在と一意性（リプシッツ条件）",
+        "相図と安定性解析",
+        "級数解法・ラプラス変換による解法"
+      ],
+      "tip": "",
+      "machineLearningUse": "Neural ODE、拡散モデルの確率微分方程式、勾配流としての学習ダイナミクス。",
+      "prerequisites": [
+        "dif",
+        "ser"
+      ],
+      "nextUnits": [
+        "pde",
+        "varc",
+        "numer",
+        "sp"
+      ]
+    },
+    {
+      "id": "meas",
+      "title": "測度論とルベーグ積分",
+      "summary": "σ加法族・可測関数・収束定理",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 6,
+      "column": "A",
+      "layoutX": 20,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "3年〜（数学科は2年）",
+      "rationale": "リーマン積分は「極限と積分の交換」に弱い。測度論はそれを解決し、確率論の厳密な土台になる。確率論を本気でやるなら必須。",
+      "topics": [
+        "σ加法族と測度、ルベーグ測度",
+        "可測関数とルベーグ積分",
+        "単調収束定理・優収束定理",
+        "フビニ・トネリの定理",
+        "Lᵖ空間と完備性",
+        "ほとんど至るところ（a.e.）の概念"
+      ],
+      "tip": "",
+      "machineLearningUse": "確率＝測度、確率変数＝可測関数、期待値＝積分。測度論的確率論の言語で書かれた論文を読むための前提。",
+      "prerequisites": [
+        "int",
+        "ser",
+        "topo"
+      ],
+      "nextUnits": [
+        "funcan",
+        "sp"
+      ]
+    },
+    {
+      "id": "vec",
+      "title": "ベクトル解析",
+      "summary": "線積分・面積分・grad/div/rot・積分定理",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 6,
+      "column": "B",
+      "layoutX": 214,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "2年 必修（物理・機械・電気）",
+      "rationale": "電磁気・流体・連続体力学の言語。ML中心なら優先度は下がるが、物理系なら必修。",
+      "topics": [
+        "スカラー場・ベクトル場",
+        "線積分と保存場、ポテンシャル",
+        "grad, div, rot と∇演算子",
+        "グリーンの定理",
+        "ガウスの発散定理・ストークスの定理",
+        "曲線座標系"
+      ],
+      "tip": "",
+      "machineLearningUse": "",
+      "prerequisites": [
+        "pd",
+        "mint"
+      ],
+      "nextUnits": [
+        "diffgeo",
+        "pde"
+      ]
+    },
+    {
+      "id": "cplx",
+      "title": "複素関数論",
+      "summary": "正則関数・コーシーの積分定理・留数",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 6,
+      "column": "C",
+      "layoutX": 408,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "2年 必修（電気・物理・機械）",
+      "rationale": "実数のままでは解けない積分が一気に解ける。フーリエ変換・信号処理・制御理論の理論的背景。",
+      "topics": [
+        "複素数と複素平面、極形式",
+        "正則性とコーシー・リーマンの方程式",
+        "複素積分とコーシーの積分定理・積分公式",
+        "テイラー展開とローラン展開",
+        "孤立特異点の分類、留数定理",
+        "実定積分への応用、等角写像"
+      ],
+      "tip": "",
+      "machineLearningUse": "フーリエ変換・Z変換の理論的基礎。信号処理系・時系列モデルの土台。",
+      "prerequisites": [
+        "tay",
+        "ser"
+      ],
+      "nextUnits": [
+        "fourier"
+      ]
+    },
+    {
+      "id": "opt",
+      "title": "多変数の極値とラグランジュ乗数法",
+      "summary": "停留点・ヘッセ行列判定・制約付き最適化",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 7,
+      "column": "A",
+      "layoutX": 20,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年前期 微積II",
+      "rationale": "「制約のもとで最適化する」というMLの基本形。ヘッセ行列の正定値性で線形代数と合流する。",
+      "topics": [
+        "多変数テイラー展開（2次まで）",
+        "停留点とヘッセ行列による極値判定",
+        "陰関数定理",
+        "ラグランジュの未定乗数法",
+        "凸関数と大域的最適性"
+      ],
+      "tip": "",
+      "machineLearningUse": "SVM の双対問題、KKT条件、Ridge/Lasso 正則化の理論的土台。",
+      "prerequisites": [
+        "tay",
+        "chain",
+        "quad"
+      ],
+      "nextUnits": [
+        "cvx",
+        "varc",
+        "stat"
+      ]
+    },
+    {
+      "id": "diffgeo",
+      "title": "微分幾何入門",
+      "summary": "曲線・曲面・曲率・多様体の初歩",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 7,
+      "column": "B",
+      "layoutX": 214,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "3年〜 選択",
+      "rationale": "「曲がった空間の上での微積分」。データが低次元多様体上に乗っているという仮説（多様体仮説）の言語。",
+      "topics": [
+        "曲線の曲率と捩率、フレネ・セレの公式",
+        "曲面の第一・第二基本形式",
+        "ガウス曲率と平均曲率、ガウス・ボンネの定理",
+        "多様体・接空間・微分形式の初歩",
+        "リーマン計量と測地線"
+      ],
+      "tip": "",
+      "machineLearningUse": "多様体学習（t-SNE, UMAP）、自然勾配法（フィッシャー情報計量）、幾何的深層学習。",
+      "prerequisites": [
+        "vec",
+        "topo"
+      ],
+      "nextUnits": [
+        "varc"
+      ]
+    },
+    {
+      "id": "fourier",
+      "title": "フーリエ解析・ラプラス変換",
+      "summary": "フーリエ級数/変換・畳み込み・伝達関数",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 7,
+      "column": "C",
+      "layoutX": 408,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "2年 必修（工学系）",
+      "rationale": "「関数を周波数に分解する」。信号処理・画像処理・微分方程式・畳み込みの全ての基礎。内積空間の直交展開の最重要例。",
+      "topics": [
+        "フーリエ級数と直交関数系",
+        "フーリエ変換とその性質",
+        "畳み込み定理",
+        "デルタ関数と超関数の初歩",
+        "離散フーリエ変換 DFT と FFT",
+        "ラプラス変換と伝達関数、逆変換"
+      ],
+      "tip": "",
+      "machineLearningUse": "CNN の畳み込み、スペクトログラム（音声認識）、位置エンコーディング、フーリエ特徴、拡散モデルのノイズスケジュール解析。",
+      "prerequisites": [
+        "imp",
+        "ser",
+        "cplx",
+        "ip"
+      ],
+      "nextUnits": [
+        "pde",
+        "numer"
+      ]
+    },
+    {
+      "id": "funcan",
+      "title": "関数解析入門",
+      "summary": "バナッハ空間・ヒルベルト空間・作用素",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 8,
+      "column": "A",
+      "layoutX": 20,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "3〜4年 選択",
+      "rationale": "線形代数を無限次元に拡張したもの。「関数のなすベクトル空間」を扱う。カーネル法の理論的な家。",
+      "topics": [
+        "ノルム空間・バナッハ空間・完備性",
+        "ヒルベルト空間と正射影定理",
+        "正規直交系と展開定理",
+        "有界線形作用素、双対空間",
+        "スペクトル理論の初歩",
+        "リースの表現定理"
+      ],
+      "tip": "",
+      "machineLearningUse": "再生核ヒルベルト空間（RKHS）＝カーネル法の理論的基盤。ガウス過程、表現定理（Representer Theorem）。",
+      "prerequisites": [
+        "meas",
+        "ip",
+        "topo"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "pde",
+      "title": "偏微分方程式",
+      "summary": "熱/波動/ラプラス方程式・変数分離・境界値問題",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 8,
+      "column": "B",
+      "layoutX": 214,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "2〜3年 選択〜必修",
+      "rationale": "熱伝導・波動・拡散・電位——連続体の現象はすべて偏微分方程式。フーリエ解析の主たる応用先。",
+      "topics": [
+        "1階PDEと特性曲線法",
+        "熱方程式・波動方程式・ラプラス方程式",
+        "変数分離法とフーリエ級数解",
+        "境界条件と固有関数展開",
+        "グリーン関数",
+        "数値解法（差分法・有限要素法）の概要"
+      ],
+      "tip": "",
+      "machineLearningUse": "拡散モデルの前向き過程はフォッカー・プランク方程式。Physics-Informed Neural Networks（PINN）。",
+      "prerequisites": [
+        "pd",
+        "ode",
+        "vec",
+        "fourier"
+      ],
+      "nextUnits": [
+        "numer"
+      ]
+    },
+    {
+      "id": "varc",
+      "title": "変分法",
+      "summary": "汎関数の最適化・オイラー・ラグランジュ方程式",
+      "category": "calc",
+      "categorySlug": "calculus",
+      "categoryLabel": "微分積分系",
+      "categoryOrder": 1,
+      "row": 8,
+      "column": "C",
+      "layoutX": 408,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "3年〜 選択",
+      "rationale": "「関数を変数として最適化する」。最小作用の原理、最短経路、そして変分推論の名前の由来。",
+      "topics": [
+        "汎関数と変分",
+        "オイラー・ラグランジュ方程式",
+        "等周問題・制約付き変分",
+        "ハミルトンの原理と解析力学",
+        "直接法（リッツ法）"
+      ],
+      "tip": "",
+      "machineLearningUse": "変分推論（VI）、ELBO の導出、VAE の変分下界。エントロピー最大化原理。",
+      "prerequisites": [
+        "ode",
+        "opt",
+        "diffgeo"
+      ],
+      "nextUnits": [
+        "cvx"
+      ]
+    },
+    {
+      "id": "mat",
+      "title": "行列とベクトルの演算",
+      "summary": "行列積・転置・逆行列・正則性",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 1,
+      "column": "D",
+      "layoutX": 626,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年前期 線形I",
+      "rationale": "以降すべての計算の言語。積が「行×列」である理由は線形写像の合成として後で回収する。",
+      "topics": [
+        "和・スカラー倍・積、非可換性",
+        "転置、対称行列、直交行列",
+        "逆行列とその性質",
+        "ブロック行列",
+        "対角・三角・冪等行列"
+      ],
+      "tip": "",
+      "machineLearningUse": "データ行列 X（行=サンプル・列=特徴量）が全ての出発点。XᵀX は共分散の骨格。",
+      "prerequisites": [
+        "root_hs"
+      ],
+      "nextUnits": [
+        "gauss",
+        "det",
+        "chain",
+        "desc"
+      ]
+    },
+    {
+      "id": "gauss",
+      "title": "連立一次方程式とガウスの消去法",
+      "summary": "行基本変形・階段形・rank・解の構造",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 2,
+      "column": "D",
+      "layoutX": 626,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年前期 線形I",
+      "rationale": "rank・像・核・次元という全概念の計算的入口。手で解ける力がないと抽象論が絵空事になる。",
+      "topics": [
+        "行基本変形と行既約階段形（RREF）",
+        "階数 rank の定義と意味",
+        "解の存在条件と自由度",
+        "同次形の解空間",
+        "LU分解"
+      ],
+      "tip": "",
+      "machineLearningUse": "正規方程式 XᵀXβ = Xᵀy を解く＝線形回帰。rank落ち＝多重共線性。",
+      "prerequisites": [
+        "mat"
+      ],
+      "nextUnits": [
+        "det",
+        "vs",
+        "numer",
+        "ff"
+      ]
+    },
+    {
+      "id": "det",
+      "title": "行列式",
+      "summary": "多重線形性・余因子展開・符号付き体積",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 3,
+      "column": "D",
+      "layoutX": 626,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年前期 線形I",
+      "rationale": "「体積の拡大率」という幾何的意味が本質。重積分の変数変換で微積と合流する。",
+      "topics": [
+        "置換による定義と多重線形交代性",
+        "余因子展開、クラメルの公式",
+        "det(AB) = det(A)det(B)",
+        "幾何的意味：符号付き体積",
+        "正則性 ⟺ det ≠ 0"
+      ],
+      "tip": "",
+      "machineLearningUse": "多変量正規分布の密度に |Σ|^(−1/2) が現れる。Normalizing Flow はヤコビ行列式そのもの。",
+      "prerequisites": [
+        "mat",
+        "gauss"
+      ],
+      "nextUnits": [
+        "eig",
+        "mint",
+        "mvn"
+      ]
+    },
+    {
+      "id": "vs",
+      "title": "ベクトル空間と基底",
+      "summary": "公理・部分空間・一次独立・基底・次元",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 3,
+      "column": "E",
+      "layoutX": 820,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年後期 線形I",
+      "rationale": "「行列の計算」から「構造の理論」へ変わる地点。抽象度が跳ね上がるが、ここが本体。",
+      "topics": [
+        "ベクトル空間の公理",
+        "部分空間、和空間・直和",
+        "一次独立と一次従属",
+        "基底と次元、基底の取り替え",
+        "関数空間・多項式空間の例"
+      ],
+      "tip": "具体例（Rⁿ・多項式・行列全体・関数）を常に3つ並べて考えると抽象論に耐えられる。",
+      "machineLearningUse": "",
+      "prerequisites": [
+        "root_log",
+        "gauss"
+      ],
+      "nextUnits": [
+        "ip",
+        "lm",
+        "topo"
+      ]
+    },
+    {
+      "id": "ip",
+      "title": "内積空間と直交性",
+      "summary": "内積・ノルム・直交補空間・グラム・シュミット",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 4,
+      "column": "D",
+      "layoutX": 626,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年前期 線形II",
+      "rationale": "「距離」と「角度」が線形代数に入る瞬間。類似度・射影・最小二乗はすべてここから派生。",
+      "topics": [
+        "内積の公理、ノルム、コーシー・シュワルツの不等式",
+        "正規直交基底",
+        "グラム・シュミットの直交化法",
+        "直交補空間 W⊥",
+        "直交行列と QR 分解"
+      ],
+      "tip": "",
+      "machineLearningUse": "コサイン類似度＝正規化された内積。埋め込みベクトルの「近さ」はこの構造。",
+      "prerequisites": [
+        "vs"
+      ],
+      "nextUnits": [
+        "proj",
+        "quad",
+        "fourier",
+        "funcan"
+      ]
+    },
+    {
+      "id": "lm",
+      "title": "線形写像と次元定理",
+      "summary": "像 Im・核 Ker・表現行列・rank + nullity",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 4,
+      "column": "E",
+      "layoutX": 820,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": false,
+      "recommendedTerm": "1年後期 線形I",
+      "rationale": "「行列＝線形写像の座標表現」への視点転換。基底を変えれば行列は変わるが写像は同じ。",
+      "topics": [
+        "線形写像の定義と例",
+        "像と核、rank + nullity = dim V",
+        "表現行列、基底変換と相似変換",
+        "同型写像",
+        "写像の合成 ⟺ 行列の積"
+      ],
+      "tip": "",
+      "machineLearningUse": "Embedding 層＝線形写像。次元削減は「像の次元を落とす」操作。",
+      "prerequisites": [
+        "vs"
+      ],
+      "nextUnits": [
+        "proj",
+        "eig",
+        "grp",
+        "tensor"
+      ]
+    },
+    {
+      "id": "proj",
+      "title": "直交射影と最小二乗法",
+      "summary": "射影行列・正規方程式・擬似逆行列",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 5,
+      "column": "D",
+      "layoutX": 626,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年前期 線形II",
+      "rationale": "線形回帰の幾何的正体。「解が無い方程式を、一番近いところで解く」という発想。",
+      "topics": [
+        "直交射影 P = A(AᵀA)⁻¹Aᵀ",
+        "最小二乗解と正規方程式",
+        "射影行列の性質（冪等・対称）",
+        "ムーア・ペンローズ擬似逆行列 A⁺",
+        "QR分解による安定な数値解法"
+      ],
+      "tip": "",
+      "machineLearningUse": "最小二乗法＝y の列空間 Col(X) への直交射影。これが線形回帰の全て。",
+      "prerequisites": [
+        "ip",
+        "lm"
+      ],
+      "nextUnits": [
+        "svd",
+        "stat"
+      ]
+    },
+    {
+      "id": "eig",
+      "title": "固有値・固有ベクトルと対角化",
+      "summary": "固有多項式・対角化可能性・スペクトル分解",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 5,
+      "column": "E",
+      "layoutX": 820,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年前期 線形II",
+      "rationale": "行列を「その行列固有の座標系」で見る技術。線形代数の最大の到達点。",
+      "topics": [
+        "固有値・固有ベクトル、固有多項式",
+        "対角化可能性の条件",
+        "対称行列のスペクトル分解 A = QΛQᵀ",
+        "ケーリー・ハミルトンの定理",
+        "行列の指数関数 e^(At)"
+      ],
+      "tip": "",
+      "machineLearningUse": "PCA＝共分散行列の固有値分解。マルコフ連鎖の定常分布＝固有値1の固有ベクトル。",
+      "prerequisites": [
+        "det",
+        "lm"
+      ],
+      "nextUnits": [
+        "quad",
+        "jordan",
+        "svd",
+        "sgraph",
+        "sp"
+      ]
+    },
+    {
+      "id": "quad",
+      "title": "二次形式と正定値性",
+      "summary": "xᵀAx・主軸変換・正定値/半正定値・レイリー商",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 6,
+      "column": "D",
+      "layoutX": 626,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年後期 線形II",
+      "rationale": "ヘッセ行列・共分散行列・カーネル行列はすべて対称行列の二次形式。凸性の判定基準。",
+      "topics": [
+        "二次形式の行列表現と標準形",
+        "主軸変換",
+        "正定値・半正定値・不定の分類",
+        "シルヴェスターの判定法（首座小行列式）",
+        "レイリー商と最大化"
+      ],
+      "tip": "",
+      "machineLearningUse": "共分散行列は常に半正定値。カーネル法の Mercer 条件＝半正定値性。凸最適化の判定。",
+      "prerequisites": [
+        "ip",
+        "eig"
+      ],
+      "nextUnits": [
+        "svd",
+        "opt",
+        "mvn",
+        "mdiff",
+        "cvx"
+      ]
+    },
+    {
+      "id": "jordan",
+      "title": "ジョルダン標準形",
+      "summary": "対角化できない行列・広義固有空間・冪零",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 6,
+      "column": "E",
+      "layoutX": 820,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "2年後期 線形II",
+      "rationale": "対角化できない行列に対する「できる限りの対角化」。重解をもつ線形ODEの解の形を決める。",
+      "topics": [
+        "広義固有空間と冪零行列",
+        "ジョルダン細胞とジョルダン標準形",
+        "最小多項式",
+        "行列の指数関数の計算",
+        "不変部分空間分解"
+      ],
+      "tip": "",
+      "machineLearningUse": "実務では数値的に不安定なため直接は使わないが、線形力学系の収束速度の理論的解析に必要。",
+      "prerequisites": [
+        "eig"
+      ],
+      "nextUnits": [
+        "numer",
+        "sp"
+      ]
+    },
+    {
+      "id": "svd",
+      "title": "特異値分解 SVD",
+      "summary": "A = UΣVᵀ・低ランク近似・条件数",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 7,
+      "column": "D",
+      "layoutX": 626,
+      "layoutWidth": 186,
+      "core": true,
+      "machineLearning": true,
+      "recommendedTerm": "2年後期 線形II/発展",
+      "rationale": "正方でない任意の行列に使える最強の分解。実務で最も使われる線形代数のツール。",
+      "topics": [
+        "特異値と特異ベクトル、A = UΣVᵀ",
+        "AᵀA・AAᵀ の固有値との関係",
+        "低ランク近似とエッカート・ヤングの定理",
+        "条件数と数値的安定性",
+        "擬似逆行列の SVD 表現"
+      ],
+      "tip": "",
+      "machineLearningUse": "PCA の実装、推薦システムの行列分解、LoRA の低ランク近似、潜在意味解析。",
+      "prerequisites": [
+        "proj",
+        "eig",
+        "quad"
+      ],
+      "nextUnits": [
+        "tensor",
+        "numer",
+        "mlmath"
+      ]
+    },
+    {
+      "id": "grp",
+      "title": "群・環・体（抽象代数）",
+      "summary": "群の公理・準同型・剰余類・環と体",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 7,
+      "column": "E",
+      "layoutX": 820,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "2〜3年（数学科は必修）",
+      "rationale": "「対称性」を数学的に扱う言語。線形代数は「体の上の加群」の特別な場合という視点が得られる。",
+      "topics": [
+        "群の定義、部分群、巡回群、対称群",
+        "準同型・同型、剰余群と準同型定理",
+        "環・イデアル・多項式環",
+        "体と拡大体、有限体",
+        "群の作用と軌道・安定化群"
+      ],
+      "tip": "",
+      "machineLearningUse": "同変ニューラルネット（Equivariant NN）、群畳み込み、対称性を組み込んだモデル設計。暗号理論。",
+      "prerequisites": [
+        "lm",
+        "ff"
+      ],
+      "nextUnits": [
+        "tensor"
+      ]
+    },
+    {
+      "id": "tensor",
+      "title": "テンソルと多重線形代数",
+      "summary": "テンソル積・添字記法・テンソル分解",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 8,
+      "column": "D",
+      "layoutX": 626,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "3年〜 選択",
+      "rationale": "行列は2階のテンソル。深層学習が扱うデータは3階・4階のテンソル。添字記法に慣れると計算が一気に楽になる。",
+      "topics": [
+        "多重線形写像とテンソル積",
+        "共変・反変と添字記法、アインシュタインの縮約",
+        "テンソルの縮約と転置",
+        "CP分解・Tucker分解",
+        "（物理系）計量テンソルと座標変換"
+      ],
+      "tip": "",
+      "machineLearningUse": "PyTorch/TensorFlow の全演算はテンソル操作。einsum、Attention の多次元縮約、テンソル分解による圧縮。",
+      "prerequisites": [
+        "lm",
+        "svd",
+        "grp"
+      ],
+      "nextUnits": [
+        "mdiff"
+      ]
+    },
+    {
+      "id": "sgraph",
+      "title": "スペクトルグラフ理論",
+      "summary": "隣接行列・グラフラプラシアン・固有値と連結性",
+      "category": "lin",
+      "categorySlug": "linear-algebra",
+      "categoryLabel": "線形代数系",
+      "categoryOrder": 2,
+      "row": 8,
+      "column": "E",
+      "layoutX": 820,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "3年〜 選択",
+      "rationale": "グラフという離散対象を、行列の固有値という連続的な道具で解析する。離散数学と線形代数の合流点。",
+      "topics": [
+        "隣接行列・次数行列・グラフラプラシアン L = D − A",
+        "Lの固有値と連結成分数の関係",
+        "フィードラーベクトルとグラフ分割",
+        "チーガー不等式",
+        "ランダムウォークと遷移行列"
+      ],
+      "tip": "",
+      "machineLearningUse": "スペクトラルクラスタリング、グラフニューラルネット（GCN）の畳み込み定義、次元削減（Laplacian Eigenmaps）。",
+      "prerequisites": [
+        "eig",
+        "graph"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "comb",
+      "title": "組合せ論と数え上げ",
+      "summary": "順列・組合せ・二項係数・包除原理・鳩の巣",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 1,
+      "column": "F",
+      "layoutX": 1038,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "1年（情報系必修）",
+      "rationale": "「場合の数を正確に数える」技術。確率論の土台であり、アルゴリズムの計算量評価の基礎。",
+      "topics": [
+        "順列・組合せ・重複組合せ",
+        "二項定理と二項係数の恒等式",
+        "包除原理",
+        "鳩の巣原理",
+        "分割数・スターリング数の初歩"
+      ],
+      "tip": "",
+      "machineLearningUse": "確率の古典的定義、モデルの組合せ爆発の見積もり、特徴量の相互作用の数え上げ。",
+      "prerequisites": [
+        "root_log"
+      ],
+      "nextUnits": [
+        "rec",
+        "graph",
+        "prob",
+        "info"
+      ]
+    },
+    {
+      "id": "logic",
+      "title": "証明技法と数理論理",
+      "summary": "帰納法・背理法・対偶・反例・形式体系",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 1,
+      "column": "G",
+      "layoutX": 1232,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "1年",
+      "rationale": "定理を「読む」から「証明する」へ。数学的帰納法は再帰アルゴリズムの正当性証明そのもの。",
+      "topics": [
+        "直接証明・対偶・背理法",
+        "数学的帰納法、強い帰納法、構造帰納法",
+        "反例の作り方",
+        "述語論理と推論規則",
+        "（発展）健全性・完全性、ゲーデルの不完全性定理の主張"
+      ],
+      "tip": "証明が書けるかどうかは才能ではなく型の習熟。まず10個の定理の証明を写経する。",
+      "machineLearningUse": "",
+      "prerequisites": [
+        "root_log"
+      ],
+      "nextUnits": [
+        "nt",
+        "alg",
+        "topo"
+      ]
+    },
+    {
+      "id": "rec",
+      "title": "漸化式と母関数",
+      "summary": "線形漸化式・特性方程式・生成関数",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 2,
+      "column": "F",
+      "layoutX": 1038,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "1〜2年",
+      "rationale": "離散版の微分方程式。線形漸化式の解法は固有値問題と同じ構造をもつ（フィボナッチ＝行列の冪）。",
+      "topics": [
+        "線形漸化式と特性方程式",
+        "定数変化法・非同次項の扱い",
+        "母関数（生成関数）による解法",
+        "分割統治の再帰式とマスター定理",
+        "（応用）行列の冪による高速計算"
+      ],
+      "tip": "",
+      "machineLearningUse": "RNN の隠れ状態は非線形漸化式。時系列モデル AR(p) は線形漸化式そのもの。",
+      "prerequisites": [
+        "comb"
+      ],
+      "nextUnits": [
+        "alg",
+        "sp"
+      ]
+    },
+    {
+      "id": "nt",
+      "title": "初等数論と合同算術",
+      "summary": "整除・ユークリッド互除法・合同式・オイラー関数",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 2,
+      "column": "G",
+      "layoutX": 1232,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "1〜2年（情報系）",
+      "rationale": "整数の世界の構造。暗号（RSA）・ハッシュ・乱数生成の理論的基礎で、抽象代数への入口。",
+      "topics": [
+        "約数・素数・素因数分解の一意性",
+        "ユークリッドの互除法と拡張互除法",
+        "合同式 mod n、中国剰余定理",
+        "フェルマーの小定理・オイラーの定理",
+        "原始根と離散対数"
+      ],
+      "tip": "",
+      "machineLearningUse": "ハッシュ関数、疑似乱数生成器、局所鋭敏型ハッシュ（LSH）。",
+      "prerequisites": [
+        "logic"
+      ],
+      "nextUnits": [
+        "ff",
+        "alg"
+      ]
+    },
+    {
+      "id": "graph",
+      "title": "グラフ理論",
+      "summary": "連結性・木・オイラー路・彩色・マッチング",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 3,
+      "column": "F",
+      "layoutX": 1038,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "2年（情報系必修）",
+      "rationale": "ネットワーク・依存関係・関係データを扱う言語。このツリーマップ自体が有向非巡回グラフ（DAG）。",
+      "topics": [
+        "グラフ・有向グラフ・重み付きグラフ",
+        "連結性・木・全域木",
+        "オイラー路とハミルトン路",
+        "最短経路（ダイクストラ）・最大流",
+        "彩色問題・マッチング・平面性",
+        "DAG とトポロジカルソート"
+      ],
+      "tip": "",
+      "machineLearningUse": "グラフニューラルネット、知識グラフ、ベイジアンネットワーク（DAG）、計算グラフ（autograd の内部表現）。",
+      "prerequisites": [
+        "comb"
+      ],
+      "nextUnits": [
+        "sgraph",
+        "sp"
+      ]
+    },
+    {
+      "id": "alg",
+      "title": "アルゴリズムと計算量",
+      "summary": "O記法・分割統治・動的計画法・NP困難",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 3,
+      "column": "G",
+      "layoutX": 1232,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "1〜2年（情報系必修）",
+      "rationale": "「解けるか」だけでなく「現実的な時間で解けるか」。ML の実装可能性を決める。",
+      "topics": [
+        "漸近記法 O, Ω, Θ と計算量解析",
+        "分割統治とマスター定理",
+        "動的計画法・貪欲法",
+        "グラフアルゴリズム",
+        "P vs NP、NP完全性、近似アルゴリズム",
+        "（発展）計算可能性、停止問題"
+      ],
+      "tip": "",
+      "machineLearningUse": "厳密推論が NP困難だから近似推論（変分推論・MCMC）を使う、という論理の根拠。",
+      "prerequisites": [
+        "logic",
+        "rec",
+        "nt"
+      ],
+      "nextUnits": [
+        "numer"
+      ]
+    },
+    {
+      "id": "topo",
+      "title": "位相空間論",
+      "summary": "開集合・連続写像・コンパクト性・連結性",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 4,
+      "column": "F",
+      "layoutX": 1038,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "2〜3年（数学科）",
+      "rationale": "「近い」という概念を距離なしで定義する。ε-δ の抽象化であり、解析学全体の骨格。",
+      "topics": [
+        "距離空間と開球、開集合・閉集合",
+        "位相空間の公理、基底と近傍",
+        "連続写像の位相的特徴づけ",
+        "コンパクト性（ハイネ・ボレル）",
+        "連結性・弧状連結性",
+        "完備性と縮小写像の原理"
+      ],
+      "tip": "",
+      "machineLearningUse": "位相的データ解析（TDA）、パーシステントホモロジー。多様体仮説の厳密な言語。",
+      "prerequisites": [
+        "vs",
+        "logic"
+      ],
+      "nextUnits": [
+        "meas",
+        "diffgeo",
+        "funcan"
+      ]
+    },
+    {
+      "id": "ff",
+      "title": "有限体と符号理論",
+      "summary": "GF(2)・線形符号・誤り訂正・ハミング距離",
+      "category": "disc",
+      "categorySlug": "discrete-foundations",
+      "categoryLabel": "離散・基礎",
+      "categoryOrder": 3,
+      "row": 4,
+      "column": "G",
+      "layoutX": 1232,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "2〜3年 選択（情報・通信）",
+      "rationale": "「有限個の元しかない世界での線形代数」。誤り訂正符号は GF(2) 上の線形代数そのもの。",
+      "topics": [
+        "有限体 GF(p), GF(2ⁿ) の構成",
+        "GF(2) 上のベクトル空間と行列",
+        "線形符号、生成行列・検査行列",
+        "ハミング距離と誤り訂正能力",
+        "ハミング符号・リード・ソロモン符号",
+        "巡回符号と多項式表現"
+      ],
+      "tip": "",
+      "machineLearningUse": "局所鋭敏型ハッシュ、量子化・圧縮、ランダム射影の構成。",
+      "prerequisites": [
+        "gauss",
+        "nt"
+      ],
+      "nextUnits": [
+        "grp"
+      ]
+    },
+    {
+      "id": "prob",
+      "title": "確率の基礎",
+      "summary": "標本空間・条件付き確率・独立性・ベイズの定理",
+      "category": "prob",
+      "categorySlug": "probability-statistics",
+      "categoryLabel": "確率・統計",
+      "categoryOrder": 4,
+      "row": 5,
+      "column": "F",
+      "layoutX": 1038,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "2年 必修",
+      "rationale": "不確実性を数として扱う。ベイズの定理は「データを見て信念を更新する」というML全体の枠組み。",
+      "topics": [
+        "標本空間・事象・確率の公理",
+        "条件付き確率と乗法定理",
+        "独立性と排反の違い",
+        "全確率の定理とベイズの定理",
+        "組合せ論的確率"
+      ],
+      "tip": "",
+      "machineLearningUse": "P(パラメータ|データ) ∝ P(データ|パラメータ)P(パラメータ)。教師あり学習も生成モデルもこの式の変奏。",
+      "prerequisites": [
+        "root_log",
+        "comb"
+      ],
+      "nextUnits": [
+        "rv",
+        "bayes"
+      ]
+    },
+    {
+      "id": "desc",
+      "title": "記述統計とデータの要約",
+      "summary": "平均・分散・相関・可視化・外れ値",
+      "category": "prob",
+      "categorySlug": "probability-statistics",
+      "categoryLabel": "確率・統計",
+      "categoryOrder": 4,
+      "row": 5,
+      "column": "G",
+      "layoutX": 1232,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": false,
+      "recommendedTerm": "1〜2年",
+      "rationale": "モデルを作る前にデータを見る。相関係数は内積の正規化であり、線形代数と直結している。",
+      "topics": [
+        "代表値（平均・中央値・最頻値）と散らばり",
+        "分散・標準偏差・四分位範囲",
+        "共分散と相関係数",
+        "標準化とスケーリング",
+        "分布の可視化、歪度・尖度",
+        "シンプソンのパラドックスなどの落とし穴"
+      ],
+      "tip": "",
+      "machineLearningUse": "前処理（標準化・正規化）は全てここ。相関係数 = 中心化ベクトルのコサイン類似度。",
+      "prerequisites": [
+        "mat"
+      ],
+      "nextUnits": [
+        "rv"
+      ]
+    },
+    {
+      "id": "rv",
+      "title": "確率変数と確率分布",
+      "summary": "確率密度・期待値・分散・主要な分布",
+      "category": "prob",
+      "categorySlug": "probability-statistics",
+      "categoryLabel": "確率・統計",
+      "categoryOrder": 4,
+      "row": 6,
+      "column": "F",
+      "layoutX": 1038,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "2年 必修",
+      "rationale": "確率を関数として扱う。密度関数の積分は広義積分、期待値の線形性は線形代数の言葉。",
+      "topics": [
+        "離散/連続確率変数、確率質量関数・密度関数",
+        "累積分布関数、期待値・分散・積率",
+        "主要分布：二項・ポアソン・正規・指数・ガンマ・ベータ",
+        "積率母関数・特性関数",
+        "変数変換とヤコビアン",
+        "同時分布・周辺分布・条件付き分布・独立性"
+      ],
+      "tip": "",
+      "machineLearningUse": "尤度関数はここから。分布族の選択がモデル設計そのもの。",
+      "prerequisites": [
+        "imp",
+        "prob",
+        "desc"
+      ],
+      "nextUnits": [
+        "lln",
+        "mvn",
+        "sp",
+        "mc",
+        "info"
+      ]
+    },
+    {
+      "id": "bayes",
+      "title": "ベイズ統計の基礎",
+      "summary": "事前分布・事後分布・共役性・ベイズ更新",
+      "category": "prob",
+      "categorySlug": "probability-statistics",
+      "categoryLabel": "確率・統計",
+      "categoryOrder": 4,
+      "row": 6,
+      "column": "G",
+      "layoutX": 1232,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "2〜3年 選択",
+      "rationale": "「パラメータも確率変数」という立場。正則化・不確実性推定・オンライン学習が統一的に理解できる。",
+      "topics": [
+        "事前分布・尤度・事後分布",
+        "共役事前分布（ベータ-二項、ガンマ-ポアソン、正規-正規）",
+        "MAP推定と最尤推定の関係",
+        "予測分布",
+        "階層ベイズモデル",
+        "（計算）MCMC・変分推論の必要性"
+      ],
+      "tip": "",
+      "machineLearningUse": "L2正則化＝ガウス事前分布のMAP推定、L1＝ラプラス事前分布。ベイズ最適化、不確実性の定量化。",
+      "prerequisites": [
+        "prob"
+      ],
+      "nextUnits": [
+        "stat",
+        "mc"
+      ]
+    },
+    {
+      "id": "lln",
+      "title": "大数の法則と中心極限定理",
+      "summary": "確率収束・分布収束・CLT・集中不等式",
+      "category": "prob",
+      "categorySlug": "probability-statistics",
+      "categoryLabel": "確率・統計",
+      "categoryOrder": 4,
+      "row": 7,
+      "column": "F",
+      "layoutX": 1038,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "2〜3年",
+      "rationale": "「サンプル平均が真の平均に近づく」ことの保証。なぜ機械学習が有限データで機能するのかの根拠。",
+      "topics": [
+        "確率収束・概収束・分布収束",
+        "大数の弱法則・強法則",
+        "中心極限定理とその証明の筋",
+        "チェビシェフ・マルコフの不等式",
+        "（発展）ヘフディング・チェルノフの集中不等式",
+        "デルタ法"
+      ],
+      "tip": "",
+      "machineLearningUse": "ミニバッチ勾配が真の勾配の不偏推定である根拠。汎化誤差の上界（PAC学習理論）の道具。",
+      "prerequisites": [
+        "ser",
+        "rv"
+      ],
+      "nextUnits": [
+        "stat",
+        "mc"
+      ]
+    },
+    {
+      "id": "mvn",
+      "title": "多変量正規分布と共分散構造",
+      "summary": "N(μ,Σ)・共分散行列・条件付き正規・確率楕円",
+      "category": "prob",
+      "categorySlug": "probability-statistics",
+      "categoryLabel": "確率・統計",
+      "categoryOrder": 4,
+      "row": 7,
+      "column": "G",
+      "layoutX": 1232,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "2〜3年",
+      "rationale": "微積（重積分・ヤコビアン）と線形代数（二次形式・行列式・固有値）が同時に使われる、統合の到達点。",
+      "topics": [
+        "多変量正規分布の密度式の導出",
+        "共分散行列 Σ の性質（対称・半正定値）",
+        "マハラノビス距離と確率楕円",
+        "線形変換の下での不変性",
+        "条件付き分布・周辺分布も正規になること",
+        "コレスキー分解によるサンプリング"
+      ],
+      "tip": "",
+      "machineLearningUse": "ガウス過程、カルマンフィルタ、VAE の潜在変数、GMM。密度式 exp(−½(x−μ)ᵀΣ⁻¹(x−μ))/√((2π)^k|Σ|) を読めることが到達目標。",
+      "prerequisites": [
+        "mint",
+        "det",
+        "quad",
+        "rv"
+      ],
+      "nextUnits": [
+        "info",
+        "mlmath"
+      ]
+    },
+    {
+      "id": "stat",
+      "title": "統計的推測（推定・検定）",
+      "summary": "最尤推定・信頼区間・仮説検定・回帰分析",
+      "category": "prob",
+      "categorySlug": "probability-statistics",
+      "categoryLabel": "確率・統計",
+      "categoryOrder": 4,
+      "row": 8,
+      "column": "F",
+      "layoutX": 1038,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "2〜3年 必修",
+      "rationale": "データからパラメータを決める作法。最尤推定は「対数尤度の最適化」であり、微積の最適化そのもの。",
+      "topics": [
+        "点推定：不偏性・一致性・有効性",
+        "最尤推定とフィッシャー情報量",
+        "信頼区間",
+        "仮説検定、第一種・第二種の過誤、p値の正しい解釈",
+        "線形回帰と最小二乗推定量の性質",
+        "分散分析、多重比較の問題"
+      ],
+      "tip": "",
+      "machineLearningUse": "損失関数＝負の対数尤度。交差エントロピー＝ベルヌーイ分布の対数尤度。MSE＝正規分布の対数尤度。",
+      "prerequisites": [
+        "opt",
+        "proj",
+        "bayes",
+        "lln"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "sp",
+      "title": "確率過程とマルコフ連鎖",
+      "summary": "マルコフ性・定常分布・ランダムウォーク・SDE",
+      "category": "prob",
+      "categorySlug": "probability-statistics",
+      "categoryLabel": "確率・統計",
+      "categoryOrder": 4,
+      "row": 8,
+      "column": "G",
+      "layoutX": 1232,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "3年〜 選択",
+      "rationale": "時間とともに変化する確率現象。定常分布を固有値問題として解く点で、線形代数と直結。",
+      "topics": [
+        "確率過程の定義、マルコフ性",
+        "遷移行列、既約性・非周期性",
+        "定常分布と極限分布（固有値1の固有ベクトル）",
+        "ランダムウォーク、ポアソン過程",
+        "マルチンゲール",
+        "（発展）ブラウン運動と確率微分方程式、伊藤の公式"
+      ],
+      "tip": "",
+      "machineLearningUse": "MCMC（ギブスサンプリング・メトロポリス法）、強化学習のMDP、拡散モデルの前向き/逆向き過程。",
+      "prerequisites": [
+        "ode",
+        "meas",
+        "eig",
+        "jordan",
+        "rec",
+        "graph",
+        "rv"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "mdiff",
+      "title": "行列微分・ベクトル微分",
+      "summary": "∂(xᵀAx)/∂x・トレース微分・レイアウト記法",
+      "category": "bridge",
+      "categorySlug": "applications",
+      "categoryLabel": "応用・合流",
+      "categoryOrder": 5,
+      "row": 9,
+      "column": null,
+      "layoutX": 57,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "合流点（独学領域）",
+      "rationale": "標準講義ではほぼ扱われないが、ML論文を読むには必須。微積×線形代数の直接の交点。",
+      "topics": [
+        "スカラーのベクトル微分、レイアウト記法の統一",
+        "∂(aᵀx)/∂x = a、∂(xᵀAx)/∂x = (A+Aᵀ)x",
+        "トレースを使った行列微分",
+        "行列式・逆行列の微分",
+        "テンソル記法（einsum）での微分",
+        "Matrix Cookbook の使い方"
+      ],
+      "tip": "",
+      "machineLearningUse": "損失関数を行列表記で微分できれば、線形回帰・ロジスティック回帰・Attention の勾配を自力で導出できる。",
+      "prerequisites": [
+        "chain",
+        "quad",
+        "tensor"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "cvx",
+      "title": "凸最適化",
+      "summary": "凸関数・勾配降下法・ニュートン法・双対性・KKT",
+      "category": "bridge",
+      "categorySlug": "applications",
+      "categoryLabel": "応用・合流",
+      "categoryOrder": 5,
+      "row": 9,
+      "column": null,
+      "layoutX": 343,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "3年〜／ML必修",
+      "rationale": "「なぜ学習が収束するのか」の理論。凸なら大域最適が保証され、非凸なら保証されない理由がわかる。",
+      "topics": [
+        "凸集合・凸関数、Jensen の不等式",
+        "1次条件・2次条件（ヘッセ行列の半正定値性）",
+        "勾配降下法と収束率、学習率の意味",
+        "ニュートン法・準ニュートン法（BFGS）",
+        "制約付き最適化：KKT条件、ラグランジュ双対",
+        "近接勾配法、劣勾配（L1正則化のため）"
+      ],
+      "tip": "",
+      "machineLearningUse": "SGD/Adam の理論的背景、SVM の双対問題、L1正則化が疎解を生む幾何学的理由、線形計画・二次計画。",
+      "prerequisites": [
+        "opt",
+        "varc",
+        "quad"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "numer",
+      "title": "数値解析・数値線形代数",
+      "summary": "誤差解析・条件数・反復法・分解の使い分け",
+      "category": "bridge",
+      "categorySlug": "applications",
+      "categoryLabel": "応用・合流",
+      "categoryOrder": 5,
+      "row": 9,
+      "column": null,
+      "layoutX": 629,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "2〜3年 選択／実務必修",
+      "rationale": "理論を手で計算できても実際は 10⁶ 次元。何が速く、何が数値的に壊れるかを知らないと実務で詰む。",
+      "topics": [
+        "浮動小数点数と丸め誤差、桁落ち",
+        "条件数と数値的安定性",
+        "LU/QR/Cholesky/SVD の使い分けと計算量",
+        "反復法（ヤコビ法・共役勾配法）",
+        "非線形方程式の数値解法（ニュートン法）",
+        "数値積分・ODEの数値解法（ルンゲ・クッタ）",
+        "スパース行列の扱い"
+      ],
+      "tip": "",
+      "machineLearningUse": "np.linalg.inv(A)@b ではなく solve(A,b) を使う理由。混合精度学習、勾配爆発/消失の数値的側面。",
+      "prerequisites": [
+        "ode",
+        "fourier",
+        "pde",
+        "gauss",
+        "jordan",
+        "svd",
+        "alg"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "mc",
+      "title": "モンテカルロ法と確率的シミュレーション",
+      "summary": "乱数生成・重点サンプリング・MCMC・分散削減",
+      "category": "bridge",
+      "categorySlug": "applications",
+      "categoryLabel": "応用・合流",
+      "categoryOrder": 5,
+      "row": 9,
+      "column": null,
+      "layoutX": 915,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "3年〜 選択",
+      "rationale": "解析的に解けない積分・期待値を、サンプリングで近似する。高次元で唯一実用的な方法。",
+      "topics": [
+        "疑似乱数生成と逆関数法・棄却法",
+        "モンテカルロ積分と収束率 O(1/√n)",
+        "重点サンプリング、分散削減法",
+        "マルコフ連鎖モンテカルロ（MCMC）",
+        "ギブスサンプリング、メトロポリス・ヘイスティングス",
+        "（発展）ハミルトニアン・モンテカルロ"
+      ],
+      "tip": "",
+      "machineLearningUse": "ベイズ推論の実装、ドロップアウトの不確実性推定、強化学習の方策評価、拡散モデルのサンプリング。",
+      "prerequisites": [
+        "mint",
+        "rv",
+        "bayes",
+        "lln"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "info",
+      "title": "情報理論",
+      "summary": "エントロピー・KL距離・相互情報量・符号化",
+      "category": "bridge",
+      "categorySlug": "applications",
+      "categoryLabel": "応用・合流",
+      "categoryOrder": 5,
+      "row": 9,
+      "column": null,
+      "layoutX": 1201,
+      "layoutWidth": 186,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "3年〜 選択／ML必修",
+      "rationale": "「情報量」を数として測る。交差エントロピー損失も、変分推論の ELBO も、この言語で書かれている。",
+      "topics": [
+        "シャノンエントロピー H(X) と結合/条件付きエントロピー",
+        "KLダイバージェンス（相対エントロピー）",
+        "相互情報量 I(X;Y)",
+        "交差エントロピーと符号長の関係",
+        "情報源符号化定理・通信路容量",
+        "（発展）フィッシャー情報量と情報幾何"
+      ],
+      "tip": "",
+      "machineLearningUse": "分類の交差エントロピー損失、VAE の KL項、GAN の JS距離、特徴選択の相互情報量、蒸留の温度付きKL。",
+      "prerequisites": [
+        "comb",
+        "rv",
+        "mvn"
+      ],
+      "nextUnits": [
+        "mlmath"
+      ]
+    },
+    {
+      "id": "mlmath",
+      "title": "機械学習の数学（統合到達点）",
+      "summary": "全分野が合流する地点／論文が読める状態",
+      "category": "bridge",
+      "categorySlug": "applications",
+      "categoryLabel": "応用・合流",
+      "categoryOrder": 5,
+      "row": 10,
+      "column": null,
+      "layoutX": 562,
+      "layoutWidth": 320,
+      "core": false,
+      "machineLearning": true,
+      "recommendedTerm": "到達目標",
+      "rationale": "ここまでの分野が全て同時に使われる領域。個々の単元では見えなかった「なぜこの式なのか」が繋がる。",
+      "topics": [
+        "線形回帰＝直交射影 ＋ 最尤推定",
+        "PCA＝共分散行列の固有値分解 / SVD",
+        "誤差逆伝播＝連鎖律 ＋ ヤコビ行列",
+        "SVM＝ラグランジュ双対 ＋ 半正定値カーネル",
+        "VAE＝変分法 ＋ KL距離 ＋ 変数変換",
+        "拡散モデル＝SDE ＋ フォッカー・プランク方程式",
+        "Transformer＝内積空間 ＋ テンソル縮約",
+        "汎化理論＝集中不等式 ＋ 計算量"
+      ],
+      "tip": "教材：Mathematics for Machine Learning（無料PDF）→ PRML / Deep Learning Book → 各分野の論文。",
+      "machineLearningUse": "到達確認：多変量正規分布の密度式・ELBO の導出・バックプロパゲーションの行列表現を、白紙から書けること。",
+      "prerequisites": [
+        "funcan",
+        "svd",
+        "sgraph",
+        "mvn",
+        "stat",
+        "sp",
+        "mdiff",
+        "cvx",
+        "numer",
+        "mc",
+        "info"
+      ],
+      "nextUnits": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "root_hs",
+      "to": "lim",
+      "crossField": false
+    },
+    {
+      "from": "root_hs",
+      "to": "mat",
+      "crossField": false
+    },
+    {
+      "from": "root_log",
+      "to": "comb",
+      "crossField": false
+    },
+    {
+      "from": "root_log",
+      "to": "logic",
+      "crossField": false
+    },
+    {
+      "from": "root_log",
+      "to": "lim",
+      "crossField": true
+    },
+    {
+      "from": "root_log",
+      "to": "vs",
+      "crossField": true
+    },
+    {
+      "from": "root_log",
+      "to": "prob",
+      "crossField": true
+    },
+    {
+      "from": "lim",
+      "to": "dif",
+      "crossField": false
+    },
+    {
+      "from": "dif",
+      "to": "tay",
+      "crossField": false
+    },
+    {
+      "from": "dif",
+      "to": "int",
+      "crossField": false
+    },
+    {
+      "from": "dif",
+      "to": "pd",
+      "crossField": false
+    },
+    {
+      "from": "dif",
+      "to": "ode",
+      "crossField": false
+    },
+    {
+      "from": "int",
+      "to": "imp",
+      "crossField": false
+    },
+    {
+      "from": "int",
+      "to": "ser",
+      "crossField": false
+    },
+    {
+      "from": "int",
+      "to": "mint",
+      "crossField": false
+    },
+    {
+      "from": "int",
+      "to": "meas",
+      "crossField": false
+    },
+    {
+      "from": "tay",
+      "to": "ser",
+      "crossField": false
+    },
+    {
+      "from": "tay",
+      "to": "opt",
+      "crossField": false
+    },
+    {
+      "from": "tay",
+      "to": "cplx",
+      "crossField": false
+    },
+    {
+      "from": "pd",
+      "to": "chain",
+      "crossField": false
+    },
+    {
+      "from": "pd",
+      "to": "mint",
+      "crossField": false
+    },
+    {
+      "from": "pd",
+      "to": "vec",
+      "crossField": false
+    },
+    {
+      "from": "pd",
+      "to": "pde",
+      "crossField": false
+    },
+    {
+      "from": "imp",
+      "to": "fourier",
+      "crossField": false
+    },
+    {
+      "from": "imp",
+      "to": "rv",
+      "crossField": true
+    },
+    {
+      "from": "ser",
+      "to": "cplx",
+      "crossField": false
+    },
+    {
+      "from": "ser",
+      "to": "fourier",
+      "crossField": false
+    },
+    {
+      "from": "ser",
+      "to": "ode",
+      "crossField": false
+    },
+    {
+      "from": "ser",
+      "to": "meas",
+      "crossField": false
+    },
+    {
+      "from": "ser",
+      "to": "lln",
+      "crossField": true
+    },
+    {
+      "from": "chain",
+      "to": "opt",
+      "crossField": false
+    },
+    {
+      "from": "chain",
+      "to": "mdiff",
+      "crossField": false
+    },
+    {
+      "from": "mint",
+      "to": "vec",
+      "crossField": false
+    },
+    {
+      "from": "mint",
+      "to": "mc",
+      "crossField": true
+    },
+    {
+      "from": "mint",
+      "to": "mvn",
+      "crossField": true
+    },
+    {
+      "from": "ode",
+      "to": "pde",
+      "crossField": false
+    },
+    {
+      "from": "ode",
+      "to": "varc",
+      "crossField": false
+    },
+    {
+      "from": "ode",
+      "to": "numer",
+      "crossField": false
+    },
+    {
+      "from": "ode",
+      "to": "sp",
+      "crossField": true
+    },
+    {
+      "from": "meas",
+      "to": "funcan",
+      "crossField": false
+    },
+    {
+      "from": "meas",
+      "to": "sp",
+      "crossField": true
+    },
+    {
+      "from": "vec",
+      "to": "diffgeo",
+      "crossField": false
+    },
+    {
+      "from": "vec",
+      "to": "pde",
+      "crossField": false
+    },
+    {
+      "from": "cplx",
+      "to": "fourier",
+      "crossField": false
+    },
+    {
+      "from": "opt",
+      "to": "cvx",
+      "crossField": false
+    },
+    {
+      "from": "opt",
+      "to": "varc",
+      "crossField": false
+    },
+    {
+      "from": "opt",
+      "to": "stat",
+      "crossField": true
+    },
+    {
+      "from": "diffgeo",
+      "to": "varc",
+      "crossField": false
+    },
+    {
+      "from": "fourier",
+      "to": "pde",
+      "crossField": false
+    },
+    {
+      "from": "fourier",
+      "to": "numer",
+      "crossField": false
+    },
+    {
+      "from": "funcan",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "pde",
+      "to": "numer",
+      "crossField": false
+    },
+    {
+      "from": "varc",
+      "to": "cvx",
+      "crossField": false
+    },
+    {
+      "from": "mat",
+      "to": "gauss",
+      "crossField": false
+    },
+    {
+      "from": "mat",
+      "to": "det",
+      "crossField": false
+    },
+    {
+      "from": "mat",
+      "to": "chain",
+      "crossField": true
+    },
+    {
+      "from": "mat",
+      "to": "desc",
+      "crossField": true
+    },
+    {
+      "from": "gauss",
+      "to": "det",
+      "crossField": false
+    },
+    {
+      "from": "gauss",
+      "to": "vs",
+      "crossField": false
+    },
+    {
+      "from": "gauss",
+      "to": "numer",
+      "crossField": false
+    },
+    {
+      "from": "gauss",
+      "to": "ff",
+      "crossField": true
+    },
+    {
+      "from": "det",
+      "to": "eig",
+      "crossField": false
+    },
+    {
+      "from": "det",
+      "to": "mint",
+      "crossField": true
+    },
+    {
+      "from": "det",
+      "to": "mvn",
+      "crossField": true
+    },
+    {
+      "from": "vs",
+      "to": "ip",
+      "crossField": false
+    },
+    {
+      "from": "vs",
+      "to": "lm",
+      "crossField": false
+    },
+    {
+      "from": "vs",
+      "to": "topo",
+      "crossField": true
+    },
+    {
+      "from": "ip",
+      "to": "proj",
+      "crossField": false
+    },
+    {
+      "from": "ip",
+      "to": "quad",
+      "crossField": false
+    },
+    {
+      "from": "ip",
+      "to": "fourier",
+      "crossField": true
+    },
+    {
+      "from": "ip",
+      "to": "funcan",
+      "crossField": true
+    },
+    {
+      "from": "lm",
+      "to": "proj",
+      "crossField": false
+    },
+    {
+      "from": "lm",
+      "to": "eig",
+      "crossField": false
+    },
+    {
+      "from": "lm",
+      "to": "grp",
+      "crossField": false
+    },
+    {
+      "from": "lm",
+      "to": "tensor",
+      "crossField": false
+    },
+    {
+      "from": "proj",
+      "to": "svd",
+      "crossField": false
+    },
+    {
+      "from": "proj",
+      "to": "stat",
+      "crossField": true
+    },
+    {
+      "from": "eig",
+      "to": "quad",
+      "crossField": false
+    },
+    {
+      "from": "eig",
+      "to": "jordan",
+      "crossField": false
+    },
+    {
+      "from": "eig",
+      "to": "svd",
+      "crossField": false
+    },
+    {
+      "from": "eig",
+      "to": "sgraph",
+      "crossField": false
+    },
+    {
+      "from": "eig",
+      "to": "sp",
+      "crossField": true
+    },
+    {
+      "from": "quad",
+      "to": "svd",
+      "crossField": false
+    },
+    {
+      "from": "quad",
+      "to": "opt",
+      "crossField": true
+    },
+    {
+      "from": "quad",
+      "to": "mvn",
+      "crossField": true
+    },
+    {
+      "from": "quad",
+      "to": "mdiff",
+      "crossField": false
+    },
+    {
+      "from": "quad",
+      "to": "cvx",
+      "crossField": false
+    },
+    {
+      "from": "jordan",
+      "to": "numer",
+      "crossField": false
+    },
+    {
+      "from": "jordan",
+      "to": "sp",
+      "crossField": true
+    },
+    {
+      "from": "svd",
+      "to": "tensor",
+      "crossField": false
+    },
+    {
+      "from": "svd",
+      "to": "numer",
+      "crossField": false
+    },
+    {
+      "from": "svd",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "grp",
+      "to": "tensor",
+      "crossField": false
+    },
+    {
+      "from": "tensor",
+      "to": "mdiff",
+      "crossField": false
+    },
+    {
+      "from": "sgraph",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "comb",
+      "to": "rec",
+      "crossField": false
+    },
+    {
+      "from": "comb",
+      "to": "graph",
+      "crossField": false
+    },
+    {
+      "from": "comb",
+      "to": "prob",
+      "crossField": true
+    },
+    {
+      "from": "comb",
+      "to": "info",
+      "crossField": true
+    },
+    {
+      "from": "logic",
+      "to": "nt",
+      "crossField": false
+    },
+    {
+      "from": "logic",
+      "to": "alg",
+      "crossField": false
+    },
+    {
+      "from": "logic",
+      "to": "topo",
+      "crossField": false
+    },
+    {
+      "from": "rec",
+      "to": "alg",
+      "crossField": false
+    },
+    {
+      "from": "rec",
+      "to": "sp",
+      "crossField": true
+    },
+    {
+      "from": "nt",
+      "to": "ff",
+      "crossField": false
+    },
+    {
+      "from": "nt",
+      "to": "alg",
+      "crossField": false
+    },
+    {
+      "from": "graph",
+      "to": "sgraph",
+      "crossField": true
+    },
+    {
+      "from": "graph",
+      "to": "sp",
+      "crossField": true
+    },
+    {
+      "from": "alg",
+      "to": "numer",
+      "crossField": false
+    },
+    {
+      "from": "topo",
+      "to": "meas",
+      "crossField": true
+    },
+    {
+      "from": "topo",
+      "to": "diffgeo",
+      "crossField": true
+    },
+    {
+      "from": "topo",
+      "to": "funcan",
+      "crossField": true
+    },
+    {
+      "from": "ff",
+      "to": "grp",
+      "crossField": true
+    },
+    {
+      "from": "prob",
+      "to": "rv",
+      "crossField": false
+    },
+    {
+      "from": "prob",
+      "to": "bayes",
+      "crossField": false
+    },
+    {
+      "from": "desc",
+      "to": "rv",
+      "crossField": false
+    },
+    {
+      "from": "rv",
+      "to": "lln",
+      "crossField": false
+    },
+    {
+      "from": "rv",
+      "to": "mvn",
+      "crossField": false
+    },
+    {
+      "from": "rv",
+      "to": "sp",
+      "crossField": false
+    },
+    {
+      "from": "rv",
+      "to": "mc",
+      "crossField": true
+    },
+    {
+      "from": "rv",
+      "to": "info",
+      "crossField": true
+    },
+    {
+      "from": "bayes",
+      "to": "stat",
+      "crossField": false
+    },
+    {
+      "from": "bayes",
+      "to": "mc",
+      "crossField": true
+    },
+    {
+      "from": "lln",
+      "to": "stat",
+      "crossField": false
+    },
+    {
+      "from": "lln",
+      "to": "mc",
+      "crossField": true
+    },
+    {
+      "from": "mvn",
+      "to": "info",
+      "crossField": true
+    },
+    {
+      "from": "mvn",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "stat",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "sp",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "mdiff",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "cvx",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "numer",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "mc",
+      "to": "mlmath",
+      "crossField": false
+    },
+    {
+      "from": "info",
+      "to": "mlmath",
+      "crossField": false
+    }
+  ]
+}
