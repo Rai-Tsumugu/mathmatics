@@ -32,7 +32,7 @@
 | P13 | 運用 | 6軸素点の型と Level 算出 | 完了 | 100% | 入力UIは未実装（JSON手書きのみ） |
 | P14 | 運用 | 問題データの正本決定 | 完了 | 100% | 本文=Markdown、管理=JSON、問題IDで結合（2026-07-29決定） |
 | P15 | 運用 | 問題ID結合とスキーマ移行 | 完了 | 100% | schemaVersion 2 移行済み。dif 11問・38採点ステップ・6軸素点を登録。レビュー合格（2026-07-31） |
-| P16 | 運用 | GitHub公開リポジトリ整備 | 作業中 | 50% | .gitignore で教材本文・admin-data.json を除外して初期コミット |
+| P16 | 運用 | GitHub公開リポジトリ整備 | 完了 | 100% | https://github.com/Rai-Tsumugu/mathmatics （public）。教材本文・admin-data.json の除外をリモートで確認済み（2026-07-31） |
 | P17 | 運用 | 単元別表の自動生成 | 未着手 | 0% | admin-data.json から progress.md の単元別表を生成し二重更新を解消 |
 
 ## 単元別コンテンツ
